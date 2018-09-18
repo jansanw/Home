@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!--头部导航条-->
     <div class="topGuide" v-show="$route.meta.showFooter">
         <div class="topGuideLeft">
           <div class="person">
@@ -23,41 +24,70 @@
               </ul>
         </div>
     </div>
+
+    <!--视图层-->
     <router-view/>
 
+    <!--右侧导航条-->
+    <div class="rightNav">
+      <ul v-if="showRightNav">
+        <li @click="changeRight()">1</li>
+      </ul>
+      <ul v-else>
+        <li @click="changeRight()">1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </div>
+    <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
           <ul class="footerNavItem">
-            <router-link to="/home" tag="li">
-              <span :class="{spanIcon1: !isActive[0],spanIcon11: isActive[0]  }"></span>
+            <router-link to="/home" tag="li" @click.native="changeShow(0)">
+              <span :class="{spanIcon1: !isActive[0],spanIcon11: isActive[0]}"></span>
               <p>全景鸟瞰</p>
             </router-link>
 
-            <router-link to="/spots" tag="li">
-              <span class="spanIcon2"></span>
+            <router-link to="/spots" tag="li" @click.native="changeShow(1)">
+              <span :class="{spanIcon2: !isActive[1],spanIcon22: isActive[1]}"></span>
               <p>实景720°</p>
             </router-link>
 
-            <router-link to="/play" tag="li">
-              <span class="spanIcon3"></span>
+            <router-link to="/play" tag="li" @click.native="changeShow(2)">
+              <span :class="{spanIcon3: !isActive[2],spanIcon33: isActive[2]}"></span>
               <p>景观漫游</p>
             </router-link>
 
-            <router-link to="/type" tag="li">
-              <span class="spanIcon4"></span>
+            <router-link to="/type" tag="li" @click.native="changeShow(3)">
+              <span :class="{spanIcon4: !isActive[3],spanIcon44: isActive[3]}"></span>
               <p>户型鉴赏</p>
             </router-link>
 
-            <router-link to="/advantage" tag="li">
-              <span class="spanIcon5"></span>
+            <router-link to="/advantage" tag="li" @click.native="changeShow(4)">
+              <span :class="{spanIcon5: !isActive[4],spanIcon55: isActive[4]}"></span>
               <p>电子楼书</p>
             </router-link>
 
-            <router-link to="/more" tag="li">
-              <span class="spanIcon6"></span>
+            <router-link to="/more" tag="li" @click.native="changeShow(5)">
+              <span  class="last spanIcon6"></span>
               <p>更多</p>
             </router-link>
           </ul>
     </div>
+   <!--二级小路由页面-->
+    <transition name="fadeIn" v-if="isShowChild1">
+      <div class="homeChildren">
+        <a href="#">选项一</a>
+        <a href="#">选项二</a>
+      </div>
+    </transition>
+
+    <transition name="fadeIn" v-if="isShowChild2">
+      <div class="playChildren">
+        <a href="#">选项一</a>
+        <a href="#">选项二</a>
+        <a href="#">选项二</a>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -65,24 +95,60 @@
 export default {
     data() {
       return {
-            isActive: [true,false,false,false,false,false]
+            isActive: [true,false,false,false,false,false],
+            isShowChild1: false,
+            isShowChild2: false,
+            showRightNav: true
       }
     },
+  methods: {
+    changeShow(index) {
+      if(index === 0) {
+        this.isShowChild1 = !this.isShowChild1;
+      } else if(index ===3 ) {
+        this.isShowChild2 = !this.isShowChild2;
+      } else {
+        this.initShow();
+      }
+    },
+    initShow() {
+      this.isShowChild1 = false;
+      this.isShowChild2 = false;
+    },
+    initisActive(index) {
+      for(let i =0; i < this.isActive.length;i++) {
+        if(i===index) {
+          this.isActive.splice(i,1,true);
+        } else {
+          this.isActive.splice(i,1,false);
+        }
+      }
+    },
+    changeRight() {
+      this.showRightNav = !this.showRightNav;
+    }
+  },
   watch: {
     '$route' (to, from) {
       let path = this.$route.path;
       if(path === "/home") {
-        console.log("home");
+        this.initShow();
+        this.initisActive(0);
       } else if(path === "/spots") {
-        console.log("spots");
+        this.initShow();
+        this.initisActive(1);
       } else if(path === "/play") {
-        console.log("play");
+        this.initShow();
+        this.initisActive(2);
       } else if(path === "/advantage") {
-        console.log("advantage");
+        this.initShow();
+        this.initisActive(4);
       } else if(path === "/type") {
-        console.log("type");
+        this.initShow();
+        this.initisActive(3);
       } else if(path === "/more") {
-        console.log("more");
+        this.initShow();
+        this.initisActive(5);
       }
     }
 
@@ -98,7 +164,9 @@ html, body {
   height: 100%;
 }
 #app {
+  position: relative;
   height: 100%;
+
   .topGuide {
     position: absolute;
     left: 0;
@@ -158,6 +226,24 @@ html, body {
             background-size: 100% 100%;
           }
         }
+      }
+    }
+  }
+  /*右侧导航条*/
+  .rightNav {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    ul {
+      li {
+        height: 2rem;
+        line-height: 2rem;
+        text-align: center;
+        background: pink;
+        margin-bottom: .3rem;
       }
     }
   }
@@ -225,6 +311,11 @@ html, body {
             background: url("../static/images/FooterNav/icon6.png") no-repeat;
             background-size: 100% 100%;
           }
+
+          &.last {
+            height: 1rem;
+            margin: .5rem 0 .5rem 0
+          }
         }
         p {
           padding-top: 10/30rem;
@@ -232,6 +323,37 @@ html, body {
         }
       }
     }
+  }
+  /*二级小路由选择页面*/
+  /*路由动画*/
+  .fadeIn-enter {
+    opacity: 0;
+  }
+  .fadeIn-enter-active {
+    transition: all .3s linear;
+    opacity: 1;
+  }
+  .fadeIn-leave-active {
+    transition: all .3s linear;
+    opacity: 0;
+  }
+  .homeChildren,.playChildren {
+    position: absolute;
+    left: 0;
+    bottom: 145/30rem;
+    width: 16.7%;
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 2rem;
+      text-align: center;
+      line-height: 2rem;
+      background: pink;
+      margin-bottom: .2rem;
+    }
+  }
+  .playChildren {
+    left: 50%;
   }
 }
 </style>
