@@ -24,9 +24,9 @@
               </ul>
         </div>
     </div>
-
     <!--视图层-->
     <router-view/>
+    <!--音频播放占位符-->
 
     <!--右侧导航条-->
     <div class="rightNav">
@@ -39,6 +39,31 @@
         <li>3</li>
       </ul>
     </div>
+
+    <!--部分的二级菜单子视图-->
+    <transition name="fadeIn" v-if="isShowChild2">
+      <div class="spotsChildren">
+        <ul>
+          <li>
+            <div class="task">入口景点01</div>
+          </li>
+          <li>
+            <div class="task">入口景点02</div>
+          </li>
+          <li>
+            <div class="task">入口景点03</div>
+          </li>
+          <li>
+            <div class="task">入口景点04</div>
+          </li>
+        </ul>
+      </div>
+    </transition>
+
+    <!--部分的二级菜单子视图对应显示的上面区域-->
+    <div class="spotsChildrenTop" v-if="isShowChild2">
+    </div>
+
     <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
           <ul class="footerNavItem">
@@ -73,6 +98,7 @@
             </router-link>
           </ul>
     </div>
+
    <!--二级小路由页面-->
     <transition name="fadeIn" v-if="isShowChild1">
       <div class="homeChildren">
@@ -81,13 +107,13 @@
       </div>
     </transition>
 
-    <transition name="fadeIn" v-if="isShowChild2">
+   <!-- <transition name="fadeIn" v-if="isShowChild2">
       <div class="playChildren">
         <a href="#">选项一</a>
         <a href="#">选项二</a>
         <a href="#">选项二</a>
       </div>
-    </transition>
+    </transition>-->
   </div>
 </template>
 
@@ -95,9 +121,12 @@
 export default {
     data() {
       return {
+            /*控制底部的导航是否激活状态*/
             isActive: [true,false,false,false,false,false],
+            /*部分二级子菜单的显示和隐藏*/
             isShowChild1: false,
             isShowChild2: false,
+            /*右侧按钮条的显示和隐藏*/
             showRightNav: true
       }
     },
@@ -171,6 +200,7 @@ html, body {
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 99;
     width: 100%;
     height: 4rem;
     display: flex;
@@ -237,6 +267,7 @@ html, body {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 2;
     ul {
       li {
         height: 2rem;
@@ -246,6 +277,49 @@ html, body {
         margin-bottom: .3rem;
       }
     }
+  }
+  /*部分的二级菜单子视图*/
+  .spotsChildren {
+    position: absolute;
+    left: 5%;
+    top: 75%;
+    width: 90%;
+    height: 7rem;
+    border: 1px solid #000;
+    z-index: 3;
+    ul {
+      height: 100%;
+      display: flex;
+
+    /* justify-content: space-around;*/ /*隔相同距离*/
+      justify-content: space-between;/*首尾紧贴, 其他隔相同距离*/
+      li {
+        width: 23%;
+        height: 100%;
+        background: pink;
+        position: relative;
+        .task {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 1.5rem;
+          font-size: .5rem;
+          text-align: center;
+          background: rgba(0,0,0,.3);
+        }
+      }
+    }
+  }
+  /*部分的二级菜单子视图对应的显示上面部分*/
+  .spotsChildrenTop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 45%;
+    z-index: 1;
+    background: #eff;
   }
   .footerNav {
     position: absolute;
