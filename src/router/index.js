@@ -10,6 +10,9 @@ import Type from "../pages/Type/Type.vue";
 import Advantage from "../pages/Advantage/Advantage.vue";
 import More from "../pages/More/More.vue";
 
+/*测试*/
+import Test1 from "../pages/Test/Test1.vue";
+
 export default new Router({
   routes: [
     {
@@ -64,6 +67,14 @@ export default new Router({
       path: '/more',
       name: 'More',
       component: More,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/test',
+      name: 'Test1',
+      component: Test1,
       meta: {
         showFooter: true
       }

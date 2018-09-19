@@ -186,7 +186,7 @@ export default {
     /*二维码的显示和隐藏*/
     changeShowCode() {
       this.showCode = !this.showCode;
-    }
+    },
   },
   watch: {
     '$route' (to, from) {
@@ -200,7 +200,7 @@ export default {
       } else if(path === "/play") {
         this.initShow();
         this.initisActive(2);
-      } else if(path === "/advantage") {
+      } else if(path === "/advantage"){
         this.initShow();
         this.initisActive(4);
       } else if(path === "/type") {
@@ -386,7 +386,7 @@ export default {
     width: 100%;
     height: 145/30rem;
     background: rgba(0,0,0,.3);
-
+    z-index: 999;
     .footerNavItem {
       display: flex;
       li {

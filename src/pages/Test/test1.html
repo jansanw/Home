@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../../../static/css/photo-sphere-viewer.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #photo-sphere {
+      width: 80%;
+      height: 500px;
+      margin: 100px auto;
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+  <script src="../../../static/js/D.min.js"></script>
+  <script src="../../../static/js/doT.min.js"></script>
+  <script src="../../../static/js/three.min.js"></script>
+  <script src="../../../static/js/uevent.js"></script>
+  <script src="../../../static/js/photo-sphere-viewer.min.js"></script>
+
+</head>
+<body>
+<!-- 全景图 -->
+<div id="photo-sphere">
+  <div id="viewer"></div>
+</div>
+<script>
+ /* import PhotoSphereViewer from "photo-sphere-viewer";*/
+  let  viewer = new PhotoSphereViewer({
+    container: 'viewer',
+    panorama: "http://wow.tgbus.com/UploadFiles_2396/201608/20160827000431992.jpg",
+    size:{
+      width:'100%',
+      height:'100%'
+    }
+  });
+
+</script>
+</body>
+</html>
