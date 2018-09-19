@@ -12,17 +12,33 @@
         </div>
         <div class="topGuideRight" >
               <ul>
-                <li>
+                <li @click="changePhone">
                   <div class="topIcon1"></div>
                 </li>
-                <li>
+                <li @click="changeShowCode()">
                   <div class="topIcon2"></div>
                 </li>
                 <li>
-                  <div class="topIcon3"></div>
+                  <div class="topIcon3">
+                    <!--发送短信-->
+                    <a href="sms:18437922681"></a>
+                  </div>
                 </li>
               </ul>
         </div>
+    </div>
+
+    <!--顶部对应的电话部分-->
+    <div class="phone">
+      <mt-actionsheet
+        :actions="actions"
+        v-model="sheetVisible">
+      </mt-actionsheet>
+    </div>
+    <!--微信二维码部分-->
+    <div class="code" v-show="showCode" @click="changeShowCode()">
+          <div class="codeImg">
+          </div>
     </div>
     <!--视图层-->
     <router-view/>
@@ -40,7 +56,7 @@
       </ul>
     </div>
 
-    <!--部分的二级菜单子视图-->
+    <!--&lt;!&ndash;部分的二级菜单子视图&ndash;&gt;
     <transition name="fadeIn" v-if="isShowChild2">
       <div class="spotsChildren">
         <ul>
@@ -59,10 +75,9 @@
         </ul>
       </div>
     </transition>
-
-    <!--部分的二级菜单子视图对应显示的上面区域-->
+    &lt;!&ndash;部分的二级菜单子视图对应显示的上面区域&ndash;&gt;
     <div class="spotsChildrenTop" v-if="isShowChild2">
-    </div>
+    </div>-->
 
     <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
@@ -125,18 +140,23 @@ export default {
             isActive: [true,false,false,false,false,false],
             /*部分二级子菜单的显示和隐藏*/
             isShowChild1: false,
-            isShowChild2: false,
+           /* isShowChild2: false,*/
             /*右侧按钮条的显示和隐藏*/
-            showRightNav: true
+            showRightNav: true,
+            /*电话提示框*/
+            actions: [{name: "呼叫", method: this.callPhone},{name: "发送短信"},],
+            sheetVisible: false,
+            /*微信二维码的显示*/
+            showCode: false
       }
     },
   methods: {
     changeShow(index) {
       if(index === 0) {
         this.isShowChild1 = !this.isShowChild1;
-      } else if(index ===3 ) {
+      }/* else if(index ===3 ) {
         this.isShowChild2 = !this.isShowChild2;
-      } else {
+      }*/ else {
         this.initShow();
       }
     },
@@ -155,6 +175,17 @@ export default {
     },
     changeRight() {
       this.showRightNav = !this.showRightNav;
+    },
+    changePhone() {
+      this.sheetVisible = true
+    },
+    /*拨打号码*/
+    callPhone() {
+      window.location.href = "tel:10086";
+    },
+    /*二维码的显示和隐藏*/
+    changeShowCode() {
+      this.showCode = !this.showCode;
     }
   },
   watch: {
@@ -180,7 +211,6 @@ export default {
         this.initisActive(5);
       }
     }
-
   },
   computed: {
 
@@ -188,14 +218,11 @@ export default {
 }
 </script>
 
-<style lang="less">
-html, body {
-  height: 100%;
-}
+<style lang="less" scoped>
 #app {
   position: relative;
   height: 100%;
-
+  /*顶部导航部分*/
   .topGuide {
     position: absolute;
     left: 0;
@@ -249,14 +276,45 @@ html, body {
           }
           .topIcon3 {
             background: url("../static/images/Home/top3.png") no-repeat;
+            a {
+              display: inline-block;
+              width: 100%;
+              height: 100%;
+            }
           }
           .topIcon1, .topIcon2, .topIcon3 {
-            width: 70%;
-            height: 90%;
+            width: 50%;
+            height: 80%;
             background-size: 100% 100%;
           }
         }
       }
+    }
+  }
+
+  /*顶部对应的电话等三个图标部分*/
+  .phone {
+    position: absolute;
+    width: 100%;
+
+  }
+
+  /*顶部微信二维码部分*/
+  .code {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .codeImg {
+      width: 50%;
+      height: 30%;
+      background: url("../static/images/Home/code.png") no-repeat;
+      background-size: 100% 100%;
     }
   }
   /*右侧导航条*/
@@ -339,8 +397,8 @@ html, body {
         padding-top: .5rem;
         span {
           display: inline-block;
-          width: 2rem;
-          height: 2rem;
+          width: 1.8rem;
+          height: 1.8rem;
           &.spanIcon1 {
             background: url("../static/images/FooterNav/icon1.png") no-repeat;
             background-size: 100% 100%;
@@ -388,11 +446,11 @@ html, body {
 
           &.last {
             height: 1rem;
-            margin: .5rem 0 .5rem 0
+            margin: .31rem 0 .5rem 0
           }
         }
         p {
-          padding-top: 10/30rem;
+          padding-top: 8.5/30rem;
           color: #fff;
         }
       }
