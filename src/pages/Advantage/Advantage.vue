@@ -188,7 +188,7 @@
             }
         },
         methods: {
-          initSwiper() {
+          /*initSwiper() {
             let conSwiper = new Swiper(
               ".ws-qw-container",
               {
@@ -203,12 +203,12 @@
                   }
                 }
               });
-          }
+          }*/
         },
         mounted() {
-         this.$nextTick(()=> {
+        /* this.$nextTick(()=> {
            this.initSwiper();
-         })
+         })*/
         },
         computed: {},
     }

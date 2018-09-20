@@ -7,7 +7,7 @@
           </div>
         </div>
         <div class="topGuideCenter">
-          <p>李张伟</p>
+          <p>椰林阳光</p>
           <p>18437922681</p>
         </div>
         <div class="topGuideRight" >
@@ -181,7 +181,7 @@ export default {
     },
     /*拨打号码*/
     callPhone() {
-      window.location.href = "tel:10086";
+      window.location.href = "tel:18437922681";
     },
     /*二维码的显示和隐藏*/
     changeShowCode() {
@@ -203,6 +203,8 @@ export default {
       } else if(path === "/advantage"){
         this.initShow();
         this.initisActive(4);
+        /*强制刷新页面,有白顿,待解决*/
+        location.reload();
       } else if(path === "/type") {
         this.initShow();
         this.initisActive(3);
@@ -236,19 +238,21 @@ export default {
       height: 100%;
     }
     .topGuideLeft {
-      flex: 1;
+      flex: .8;
+      display: flex;
+      align-items: center;
       .person {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-left: .5rem;
+      /*  border-radius: 50%;*/
         background: url("../static/images/Home/person.png") no-repeat;
         background-size: 100% 100%;
       }
     }
     .topGuideCenter {
+      margin-top: .2rem;
       flex: 2;
-      box-sizing: border-box;
-      padding-left: 1rem;
       p {
         margin-top: .1rem;
       }
@@ -284,7 +288,7 @@ export default {
           }
           .topIcon1, .topIcon2, .topIcon3 {
             width: 50%;
-            height: 80%;
+            height: 65%;
             background-size: 100% 100%;
           }
         }
