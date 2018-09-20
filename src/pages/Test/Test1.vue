@@ -18,12 +18,12 @@
             let viewer = new PhotoSphereViewer({
               container: 'viewer',
               /*panorama: 'http://www.360pano.eu/pano/0400/0400.jpg',*/
-              panorama: 'path/to/panorama.jpg',
+              panorama: './static/qq.jpg',
               time_anim: false,
               navbar: true,
               size: {
                 width: '100%',
-                height: '400px'
+                height: '300px'
               },
             });
           })
