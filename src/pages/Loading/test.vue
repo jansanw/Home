@@ -91,7 +91,7 @@
   .progress-bar {
     color: #fff;
     position: fixed;
-    bottom: 50%;
+    bottom: 42%;
     height: 3px;
     width: 0;
     background: rgba(0,0,0,.4);

@@ -27,7 +27,7 @@
 <style lang="less" scoped>
   .loading {
     height: 100%;
-    background:  url("../../../static/images/Home/home_loading.png") no-repeat;
+    background:  url("../../../static/images/Home/home_loading.jpg") no-repeat;
     background-size: 100% 100%;
   }
 </style>

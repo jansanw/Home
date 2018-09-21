@@ -45,15 +45,31 @@
     <!--音频播放占位符-->
 
     <!--右侧导航条-->
-    <div class="rightNav">
-      <ul v-if="showRightNav">
-        <li @click="changeRight()">1</li>
-      </ul>
-      <ul v-else>
-        <li @click="changeRight()">1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
+    <div class="rightNav" v-show="!$route.meta.rightNav">
+
+      <transition name="fadeOut" v-if="showRightNav">
+        <ul>
+          <li @click="changeRight()">
+            <span class="right1"></span>
+          </li>
+        </ul>
+      </transition>
+
+
+      <transition name="fadeOut" v-else>
+        <ul>
+          <li @click="changeRight()">
+            <span class="right11"></span>
+          </li>
+          <li>
+            <span class="right2"></span>
+          </li>
+          <li>
+            <span class="right3"></span>
+          </li>
+        </ul>
+      </transition>
+
     </div>
 
     <!--&lt;!&ndash;部分的二级菜单子视图&ndash;&gt;
@@ -331,12 +347,35 @@ export default {
     transform: translateY(-50%);
     z-index: 2;
     ul {
+      width: 5rem;
+      background: rgba(0,0,0, .45);
       li {
-        height: 2rem;
-        line-height: 2rem;
-        text-align: center;
-        background: pink;
+        height: 3rem;
+        line-height: 3.5rem;
         margin-bottom: .3rem;
+        span {
+          display: inline-block;
+          margin-left: .7rem;
+          width: 50%;
+          height: 50%;
+          &.right1 {
+            background: url("../static/images/FooterNav/xuanzhang2.png") no-repeat;
+            background-size: 100% 100%;
+          }
+          &.right11 {
+            background: url("../static/images/FooterNav/xuanzhang1.png") no-repeat;
+            background-size: 100% 100%;
+          }
+          &.right2 {
+            background: url("../static/images/FooterNav/zidong1.png") no-repeat;
+            background-size: 100% 100%;
+          }
+          &.right3 {
+            background: url("../static/images/FooterNav/caozuo1.png") no-repeat;
+            background-size: 100% 100%;
+          }
+
+        }
       }
     }
   }
@@ -462,15 +501,15 @@ export default {
   }
   /*二级小路由选择页面*/
   /*路由动画*/
-  .fadeIn-enter {
+  .fadeOut-enter {
     opacity: 0;
   }
-  .fadeIn-enter-active {
-    transition: all .3s linear;
+  .fadeOut-enter-active {
+    transition: all .5s linear;
     opacity: 1;
   }
-  .fadeIn-leave-active {
-    transition: all .3s linear;
+  .fadeOut-leave-active {
+    transition: all .5s linear;
     opacity: 0;
   }
   .homeChildren,.playChildren {

@@ -1,9 +1,12 @@
 <template>
     <div class="test1">
-      <div id="viewer">
+      <!--<div id="viewer">
 
-      </div>
-
+      </div>-->
+      <iframe src="http://unrealera.gugushuzi.com/test"
+              width="100%" height="100%"
+              frameborder="0" scrolling="auto">
+      </iframe>
 
     </div>
 </template>
@@ -14,25 +17,20 @@
             return {}
         },
         mounted() {
-          this.$nextTick(()=> {
+         /* this.$nextTick(()=> {
             let viewer = new PhotoSphereViewer({
               container: 'viewer',
-              /*panorama: 'http://www.360pano.eu/pano/0400/0400.jpg',*/
-              panorama: './static/qq.jpg',
+              panorama: '../../../static/test.jpg',
               time_anim: false,
               navbar: true,
               size: {
                 width: '100%',
-                height: '300px'
+                height: '100%'
               },
             });
-          })
+          })*/
         },
-        methods: {
-          initArray() {
-
-          }
-        },
+        methods: {},
         computed: {},
 
     }

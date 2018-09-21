@@ -20,7 +20,8 @@ export default new Router({
       name: 'HomeLoading',
       component: HomeLoading,
       meta: {
-        showFooter: false
+        showFooter: false,
+        rightNav: true
       }
     },
     {

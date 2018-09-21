@@ -15,6 +15,7 @@
     "mint-ui": "^2.2.13",
     "photo-sphere-viewer": "^3.4.1",
     "vue": "^2.5.2",
+    "vue-krpano": "^1.5.3",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

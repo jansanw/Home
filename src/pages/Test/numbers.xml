@@ -1,0 +1,31 @@
+<krpano onstart="trace(Numbers © by Tuur);">
+
+<style name="num" url="textfield.swf" keep="true" align="lefttop" x="10" width="140"  backgroundcolor="0xffffff" backgroundalpha="0.8" css="font-family: Arial; font-size:14px; color:#0x333333; text-align:left; line-height:14px;" html="" enabled="false" border="true" borderwidth="2" bordercolor="0x333333" roundedge="10" padding="10" />
+
+<layer name="numbers1" style="num"  y="20"  height="60"  />
+<layer name="numbers2" style="num"  y="90"  height="80" />
+
+<events name="numbers" keep="true" onviewchange="adjusthlookat(0);DoNumbers(get(view.hlookat), get(view.vlookat),get(view.fov));DoNumbers2();" />
+
+
+<action name="DoNumbers" type="Javascript"><![CDATA[
+	var h = Math.round(args[1]*100)/100;
+	var v = Math.round(args[2]*100)/100;
+	var f = Math.round(args[3]*100)/100;
+	
+	krpano.call("set(layer[numbers1].html, Hlookat: " + h + '[br]Vlookat: ' + v + '[br]Fov: ' + f);
+]]></action>
+
+<action name="DoNumbers2">
+	setinterval(time, 0.02,
+		screentosphere(mouse.x, mouse.y, toh, tov);
+		roundval(toh,1);
+		roundval(tov,1);
+		set(layer[numbers2].html, calc:'鼠标 x = ' + mouse.x + '[br]鼠标 y = ' + mouse.y + '[br]鼠标 ATH = ' + toh + '[br]鼠标 ATV = ' + tov);
+	);
+</action>
+
+
+
+</krpano>
+
