@@ -16,7 +16,7 @@
 <style lang="less" scoped>
   .spots {
     height: 100%;
-    background: url("../../../static/images/Spots/1.jpg") no-repeat;
+    background: url("../../../static/images/Spots/spots.jpg") no-repeat;
     background-size: 100% 100%;
   }
 </style>

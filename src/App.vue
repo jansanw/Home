@@ -8,7 +8,7 @@
         </div>
         <div class="topGuideCenter">
           <p>椰林阳光</p>
-          <p>18437922681</p>
+          <p>15008278121</p>
         </div>
         <div class="topGuideRight" >
               <ul>
@@ -16,7 +16,9 @@
                   <div class="topIcon1"></div>
                 </li>
                 <li @click="changeShowCode()">
-                  <div class="topIcon2"></div>
+                  <div class="topIcon2">
+                    <img src="../static/images/Home/top2.png" alt="">
+                  </div>
                 </li>
                 <li>
                   <div class="topIcon3">
@@ -41,11 +43,11 @@
           </div>
     </div>
     <!--视图层-->
-    <router-view/>
+    <router-view :key="activeDate"/>
     <!--音频播放占位符-->
 
     <!--右侧导航条-->
-    <div class="rightNav" v-show="!$route.meta.rightNav">
+    <div class="rightNav" v-show="$route.meta.rightNav">
 
       <transition name="fadeOut" v-if="showRightNav">
         <ul>
@@ -54,8 +56,6 @@
           </li>
         </ul>
       </transition>
-
-
       <transition name="fadeOut" v-else>
         <ul>
           <li @click="changeRight()">
@@ -71,29 +71,6 @@
       </transition>
 
     </div>
-
-    <!--&lt;!&ndash;部分的二级菜单子视图&ndash;&gt;
-    <transition name="fadeIn" v-if="isShowChild2">
-      <div class="spotsChildren">
-        <ul>
-          <li>
-            <div class="task">入口景点01</div>
-          </li>
-          <li>
-            <div class="task">入口景点02</div>
-          </li>
-          <li>
-            <div class="task">入口景点03</div>
-          </li>
-          <li>
-            <div class="task">入口景点04</div>
-          </li>
-        </ul>
-      </div>
-    </transition>
-    &lt;!&ndash;部分的二级菜单子视图对应显示的上面区域&ndash;&gt;
-    <div class="spotsChildrenTop" v-if="isShowChild2">
-    </div>-->
 
     <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
@@ -120,7 +97,7 @@
 
             <router-link to="/advantage" tag="li" @click.native="changeShow(4)">
               <span :class="{spanIcon5: !isActive[4],spanIcon55: isActive[4]}"></span>
-              <p>电子楼书</p>
+              <p>区位优势</p>
             </router-link>
 
             <router-link to="/more" tag="li" @click.native="changeShow(5)">
@@ -131,20 +108,18 @@
     </div>
 
    <!--二级小路由页面-->
-    <transition name="fadeIn" v-if="isShowChild1">
-      <div class="homeChildren">
-        <a href="#">选项一</a>
-        <a href="#">选项二</a>
+    <transition name="fadeIn" >
+      <div class="homeChildren" v-if="isShowChild1">
+        <a href="#"
+           @click = "changeHomeShow(1)"
+           :class="{active: homeChildren==='one'}"
+        >交通配套</a>
+        <a href="#"
+           @click = "changeHomeShow(2)"
+           :class="{active: homeChildren==='two'}"
+        >项目沙盘</a>
       </div>
     </transition>
-
-   <!-- <transition name="fadeIn" v-if="isShowChild2">
-      <div class="playChildren">
-        <a href="#">选项一</a>
-        <a href="#">选项二</a>
-        <a href="#">选项二</a>
-      </div>
-    </transition>-->
   </div>
 </template>
 
@@ -156,6 +131,8 @@ export default {
             isActive: [true,false,false,false,false,false],
             /*部分二级子菜单的显示和隐藏*/
             isShowChild1: false,
+            /*二级子菜单的切换*/
+            homeChildren: "one",
            /* isShowChild2: false,*/
             /*右侧按钮条的显示和隐藏*/
             showRightNav: true,
@@ -163,7 +140,8 @@ export default {
             actions: [{name: "呼叫", method: this.callPhone},{name: "发送短信"},],
             sheetVisible: false,
             /*微信二维码的显示*/
-            showCode: false
+            showCode: false,
+            activeDate: 1
       }
     },
   methods: {
@@ -203,11 +181,15 @@ export default {
     changeShowCode() {
       this.showCode = !this.showCode;
     },
+    changeHomeShow(index) {
+      index===1? this.homeChildren = "one" : this.homeChildren = "two";
+    }
   },
   watch: {
     '$route' (to, from) {
       let path = this.$route.path;
       if(path === "/home") {
+        location.reload();
         this.initShow();
         this.initisActive(0);
       } else if(path === "/spots") {
@@ -219,8 +201,6 @@ export default {
       } else if(path === "/advantage"){
         this.initShow();
         this.initisActive(4);
-        /*强制刷新页面,有白顿,待解决*/
-        location.reload();
       } else if(path === "/type") {
         this.initShow();
         this.initisActive(3);
@@ -240,6 +220,7 @@ export default {
 #app {
   position: relative;
   height: 100%;
+  overflow: hidden;
   /*顶部导航部分*/
   .topGuide {
     position: absolute;
@@ -258,22 +239,25 @@ export default {
       display: flex;
       align-items: center;
       .person {
-        width: 3.5rem;
-        height: 3.5rem;
+        width: 3rem;
+        height: 3rem;
         margin-left: .5rem;
-      /*  border-radius: 50%;*/
         background: url("../static/images/Home/person.png") no-repeat;
         background-size: 100% 100%;
       }
     }
     .topGuideCenter {
+      box-sizing: border-box;
       margin-top: .2rem;
+      padding-left: .5rem;
       flex: 2;
       p {
         margin-top: .1rem;
       }
     }
     .topGuideRight {
+      box-sizing: border-box;
+      padding-left: 7.5rem;
       flex: 2.5;
       display: flex;
       align-items: center;
@@ -292,7 +276,11 @@ export default {
             background: url("../static/images/Home/top1.png") no-repeat;
           }
           .topIcon2 {
-            background: url("../static/images/Home/top2.png") no-repeat;
+           /* background: url("") no-repeat;*/
+            img {
+              width: 100%;
+              height: 100%;
+            }
           }
           .topIcon3 {
             background: url("../static/images/Home/top3.png") no-repeat;
@@ -355,8 +343,8 @@ export default {
         margin-bottom: .3rem;
         span {
           display: inline-block;
-          margin-left: .7rem;
-          width: 50%;
+          margin-left: .9rem;
+          width: 45%;
           height: 50%;
           &.right1 {
             background: url("../static/images/FooterNav/xuanzhang2.png") no-repeat;
@@ -427,7 +415,8 @@ export default {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 145/30rem;
+   /* height: 145/30rem;*/
+    height: 130/30rem;
     background: rgba(0,0,0,.3);
     z-index: 999;
     .footerNavItem {
@@ -488,13 +477,14 @@ export default {
           }
 
           &.last {
-            height: 1rem;
-            margin: .31rem 0 .5rem 0
+            height: .6rem;
+            margin: .48rem 0 .6rem 0
           }
         }
         p {
           padding-top: 8.5/30rem;
           color: #fff;
+          font-size: 12px;
         }
       }
     }
@@ -512,23 +502,27 @@ export default {
     transition: all .5s linear;
     opacity: 0;
   }
-  .homeChildren,.playChildren {
+  .homeChildren{
     position: absolute;
     left: 0;
-    bottom: 145/30rem;
-    width: 16.7%;
+    bottom: 155/30rem;
+    width: 40%;
+    height: 2.7rem;
+    border-radius: 10px;
+    background: rgba(0,0,0,.45);
     a {
-      display: inline-block;
-      width: 100%;
-      height: 2rem;
+      color: #fff;
       text-align: center;
-      line-height: 2rem;
-      background: pink;
-      margin-bottom: .2rem;
+      display: inline-block;
+      font-size: 12px;
+      line-height: 2.3rem;
+      width: 39%;
+      margin: 0 .3rem;
+      border-bottom: 2px solid transparent;
+      &.active {
+        border-bottom: 2px solid #fff;
+      }
     }
-  }
-  .playChildren {
-    left: 50%;
   }
 }
 </style>

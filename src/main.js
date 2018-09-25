@@ -13,6 +13,8 @@ Vue.use(Krpano);
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 Vue.use(MintUI);
+
+
 new Vue({
   el: '#app',
   router,
