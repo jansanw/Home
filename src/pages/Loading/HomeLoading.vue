@@ -36,7 +36,7 @@
            this.$router.push("/home");
          }
          this.progress += 15;
-       },100)
+       },200)
       });
 
     },
