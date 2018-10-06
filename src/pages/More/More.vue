@@ -58,7 +58,7 @@
       width: 100%;
       height: 100%;
       .slide1 {
-        background: url("../../../static/images/More/more1.jpg") no-repeat;
+        background: url("../../../static/images/More/more1.png") no-repeat;
       }
       .slide2 {
         background: url("../../../static/images/More/more2.jpg") no-repeat;

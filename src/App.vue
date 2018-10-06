@@ -23,7 +23,7 @@
                 <li>
                   <div class="topIcon3">
                     <!--发送短信-->
-                    <a href="sms:18437922681"></a>
+                    <a href="sms:15008278121"></a>
                   </div>
                 </li>
               </ul>
@@ -40,6 +40,7 @@
     <!--微信二维码部分-->
     <div class="code" v-show="showCode" @click="changeShowCode()">
           <div class="codeImg">
+            <img src="../static/images/Home/code.png" alt="">
           </div>
     </div>
     <!--视图层-->
@@ -120,6 +121,45 @@
         >项目沙盘</a>
       </div>
     </transition>
+
+    <!--更多的二级导航-->
+    <transition name="fadeIn" >
+      <div class="moreChildren" v-if="isShowChild2">
+            <div class="moreChildrenT">
+              <ul>
+                <li>
+                  <span class="moreIcon moreIcon1"></span>
+                  <p>区位优势</p>
+                </li>
+                <li>
+                  <span class="moreIcon moreIcon2"></span>
+                  <p>计算器</p>
+                </li>
+                <li>
+                  <span class="moreIcon moreIcon3"></span>
+                  <p>版权声明</p>
+                </li>
+                <li>
+                  <span class="moreIcon moreIcon4"></span>
+                  <p>免费申明</p>
+                </li>
+              </ul>
+            </div>
+            <div class="moreChildrenB">
+              <ul>
+                <li>
+                  <span class="moreIcon moreIcon5"></span>
+                </li>
+                <li>
+                  <span class="moreIcon moreIcon6"></span>
+                </li>
+                <li>
+                  <span class="moreIcon moreIcon7"></span>
+                </li>
+              </ul>
+            </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -131,6 +171,7 @@ export default {
             isActive: [true,false,false,false,false,false],
             /*部分二级子菜单的显示和隐藏*/
             isShowChild1: false,
+            isShowChild2: false,
             /*二级子菜单的切换*/
             homeChildren: "one",
            /* isShowChild2: false,*/
@@ -148,9 +189,9 @@ export default {
     changeShow(index) {
       if(index === 0) {
         this.isShowChild1 = !this.isShowChild1;
-      }/* else if(index ===3 ) {
+      } else if(index ===5 ) {
         this.isShowChild2 = !this.isShowChild2;
-      }*/ else {
+      } else {
         this.initShow();
       }
     },
@@ -175,7 +216,7 @@ export default {
     },
     /*拨打号码*/
     callPhone() {
-      window.location.href = "tel:18437922681";
+      window.location.href = "tel:15008278121";
     },
     /*二维码的显示和隐藏*/
     changeShowCode() {
@@ -189,6 +230,7 @@ export default {
     '$route' (to, from) {
       let path = this.$route.path;
       if(path === "/home") {
+        /*此处可以进行优化*/
         location.reload();
         this.initShow();
         this.initisActive(0);
@@ -321,8 +363,10 @@ export default {
     .codeImg {
       width: 50%;
       height: 30%;
-      background: url("../static/images/Home/code.png") no-repeat;
-      background-size: 100% 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   /*右侧导航条*/
@@ -417,7 +461,7 @@ export default {
     width: 100%;
    /* height: 145/30rem;*/
     height: 130/30rem;
-    background: rgba(0,0,0,.3);
+    background: rgba(0,0,0,.6);
     z-index: 999;
     .footerNavItem {
       display: flex;
@@ -502,6 +546,7 @@ export default {
     transition: all .5s linear;
     opacity: 0;
   }
+  /*home的二级导航*/
   .homeChildren{
     position: absolute;
     left: 0;
@@ -521,6 +566,62 @@ export default {
       border-bottom: 2px solid transparent;
       &.active {
         border-bottom: 2px solid #fff;
+      }
+    }
+  }
+  /*更多的二级导航*/
+  .moreChildren {
+    position: absolute;
+    bottom: 130/30rem;
+    left: 0;
+    width: 100%;
+    height: 10rem;
+    z-index: 99;
+    box-sizing: border-box;
+    padding: 1.5rem  3.2rem;
+    background: rgba(0,0,0,.5);
+    .moreChildrenT {
+      border-bottom: 1px solid #ccc;
+    }
+    .moreChildrenB {
+      margin-top: 1rem;
+    }
+    ul {
+      display: flex;
+      li {
+        flex: 1;
+        text-align: center;
+        .moreIcon1 {
+          background: url("../static/images/FooterNav/xiadaohang-quweiyoushi1.png") no-repeat;
+        }
+        .moreIcon2 {
+          background: url("../static/images/FooterNav/xiadaohang-jisuanqi.png") no-repeat;
+        }
+        .moreIcon3 {
+          background: url("../static/images/FooterNav/xiadaohang-banquan.png") no-repeat;
+        }
+        .moreIcon4 {
+          background: url("../static/images/FooterNav/xiadaohang-mianze.png") no-repeat;
+        }
+        .moreIcon5 {
+          background: url("../static/images/FooterNav/xiadaohanglan-yinyue.png") no-repeat;
+        }
+        .moreIcon6 {
+          background: url("../static/images/FooterNav/xiadaohanglan-daohang.png") no-repeat;
+        }
+        .moreIcon7 {
+          background: url("../static/images/FooterNav/xiadaohanglan-dianhua.png") no-repeat;
+        }
+        .moreIcon {
+          display: inline-block;
+          width: 1.8rem;
+          height: 1.8rem;
+          background-size: 100% 100%;
+        }
+        p {
+          font-size: 12px;
+          line-height:  2.5rem;
+        }
       }
     }
   }
