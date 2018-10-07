@@ -1,16 +1,20 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-Vue.use(Router)
+import Vue from 'vue';
+import Router from 'vue-router';
+Vue.use(Router);
 
-import Home from "../pages/Home/Home.vue";
-import HomeLoading from "../pages/Loading/HomeLoading.vue";
-import Spots from "../pages/Spots/Spots.vue";
-import Play from "../pages/Play/Play.vue";
-import Type from "../pages/Type/Type.vue";
-import Advantage from "../pages/Advantage/Advantage.vue";
-import More from "../pages/More/More.vue";
-/*测试*/
-// import Test1 from "../pages/Test/Test1.vue";
+/*主要的组件实现按需加载*/
+import Home from "../pages/Home/Home.vue"; // 此处有遗留问题 自动刷新问题
+const HomeLoading = ()=> import("../pages/Loading/HomeLoading.vue");
+const Spots = ()=> import("../pages/Spots/Spots.vue");
+const Play = ()=> import("../pages/Play/Play.vue");
+const Type = ()=> import("../pages/Type/Type.vue");
+const Advantage = ()=> import("../pages/Advantage/Advantage.vue");
+const More = ()=> import("../pages/More/More.vue");
+
+
+/*更多部分的二级路由*/
+import Book from "../pages/More/Children/Book.vue";
+
 
 export default new Router({
   routes: [
@@ -29,7 +33,7 @@ export default new Router({
       component: Home,
       meta: {
         showFooter: true,
-        rightNav: true
+        rightNav: true,
       }
     },
     {
@@ -37,7 +41,8 @@ export default new Router({
       name: 'Spots',
       component: Spots,
       meta: {
-        showFooter: true
+        showFooter: true,
+        keepAlive: true
       }
     },
     {
@@ -45,7 +50,8 @@ export default new Router({
       name: 'Play',
       component: Play,
       meta: {
-        showFooter: true
+        showFooter: true,
+        keepAlive: true
       }
     },
     {
@@ -53,7 +59,8 @@ export default new Router({
       name: 'Type',
       component: Type,
       meta: {
-        showFooter: true
+        showFooter: true,
+        keepAlive: true
       }
     },
     {
@@ -61,16 +68,24 @@ export default new Router({
       name: 'Advantage',
       component: Advantage,
       meta: {
-        showFooter: true
+        showFooter: true,
+        keepAlive: true
       }
     },
+
+    // more部分的二级路由
     {
       path: '/more',
       name: 'More',
       component: More,
       meta: {
-        showFooter: true
-      }
+        showFooter: true,
+        keepAlive: true
+      },
+     /* children:[
+        { path: '/more/book', component:  Book},
+        {path: "", redirect: "/more/book"}
+      ],*/
     },
   ]
 })

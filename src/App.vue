@@ -43,8 +43,13 @@
             <img src="../static/images/Home/code.png" alt="">
           </div>
     </div>
-    <!--视图层-->
-    <router-view :key="activeDate"/>
+    <!--视图层 加了缓存和不缓存-->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <!-- 这里不会被keepalive -->
+    <router-view v-if="!$route.meta.keepAlive" ></router-view>
+
     <!--音频播放占位符-->
 
     <!--右侧导航条-->
@@ -129,7 +134,7 @@
               <ul>
                 <li>
                   <span class="moreIcon moreIcon1"></span>
-                  <p>区位优势</p>
+                  <p>电子楼书</p>
                 </li>
                 <li>
                   <span class="moreIcon moreIcon2"></span>
@@ -153,7 +158,7 @@
                 <li>
                   <span class="moreIcon moreIcon6"></span>
                 </li>
-                <li>
+                <li @click="callPhone()">
                   <span class="moreIcon moreIcon7"></span>
                 </li>
               </ul>
@@ -174,7 +179,6 @@ export default {
             isShowChild2: false,
             /*二级子菜单的切换*/
             homeChildren: "one",
-           /* isShowChild2: false,*/
             /*右侧按钮条的显示和隐藏*/
             showRightNav: true,
             /*电话提示框*/
@@ -182,16 +186,16 @@ export default {
             sheetVisible: false,
             /*微信二维码的显示*/
             showCode: false,
-            activeDate: 1
       }
     },
   methods: {
     changeShow(index) {
       if(index === 0) {
         this.isShowChild1 = !this.isShowChild1;
-      } else if(index ===5 ) {
+      } else if(index === 5 ) {
         this.isShowChild2 = !this.isShowChild2;
       } else {
+        /*切换后让子导航隐藏*/
         this.initShow();
       }
     },
@@ -259,6 +263,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 #app {
   position: relative;
   height: 100%;
@@ -268,10 +273,10 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 99;
     width: 100%;
     height: 4rem;
     display: flex;
+    z-index: 999;
     background: rgba(0,0,0,.3);
     .topGuideLeft, .topGuideCenter, .topGuideRight {
       height: 100%;
@@ -356,6 +361,7 @@ export default {
     top: 0;
     width: 100%;
     height: 100%;
+    z-index: 999;
     background: rgba(0,0,0,.45);
     display: flex;
     align-items: center;
@@ -377,7 +383,7 @@ export default {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2;
+    z-index: 999;
     ul {
       width: 5rem;
       background: rgba(0,0,0, .45);
@@ -577,6 +583,7 @@ export default {
     width: 100%;
     height: 10rem;
     z-index: 99;
+    border-radius: 30px 30px 0 0;
     box-sizing: border-box;
     padding: 1.5rem  3.2rem;
     background: rgba(0,0,0,.5);

@@ -1,43 +1,19 @@
 <template>
     <div class="more">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-              <div class="myslide slide1"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide2"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide3"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide4"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide5"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide6"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide7"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide8"></div>
-          </div>
-          <div class="swiper-slide">
-            <div class="myslide slide9"></div>
-          </div>
-        </div>
-      </div>
+          <!--注意层级问题,不然会导致一些东西不能正常显示 z-indent设置大一点-->
+          <!--动态组件-->
+        <component :is="currentView"></component>
     </div>
 </template>
 <script>
+  import Book from "./Children/Book.vue";
+
   import  Swiper from "../../../static/js/swiper-4.0.5.min";
     export default {
         data() {
-            return {}
+            return {
+              currentView: "Book"
+            }
         },
       mounted() {
         this.$nextTick(()=> {
@@ -48,14 +24,17 @@
       },
         methods: {},
         computed: {},
+      components: {
+        Book
+      }
 
     }
 </script>
 <style lang="less" scoped>
   .more {
     height: 100%;
+    color: red;
     .swiper-container {
-      width: 100%;
       height: 100%;
       .slide1 {
         background: url("../../../static/images/More/more1.png") no-repeat;

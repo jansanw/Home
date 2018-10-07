@@ -11,6 +11,9 @@
         data() {
             return {}
         },
+       props: {
+         twoShow: String
+       },
         methods: {},
         computed: {},
 
