@@ -14,10 +14,17 @@ import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 Vue.use(MintUI);
 
+/*Vuex*/
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+/*引入store*/
+import store from "./store";
 
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

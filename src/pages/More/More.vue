@@ -7,8 +7,8 @@
 </template>
 <script>
   import Book from "./Children/Book.vue";
-
   import  Swiper from "../../../static/js/swiper-4.0.5.min";
+  import {mapState} from "vuex";
     export default {
         data() {
             return {
@@ -23,11 +23,20 @@
         })
       },
         methods: {},
-        computed: {},
-      components: {
-        Book
+        computed: {
+          ...mapState(['moreFlag']),
+        },
+        components: {
+          Book
+        },
+      watch: {
+        moreFlag: {
+          handler(newValue, oldValue) {
+            console.log(newValue)
+          },
+          deep: true
+        }
       }
-
     }
 </script>
 <style lang="less" scoped>

@@ -128,23 +128,22 @@
     </transition>
 
     <!--更多的二级导航-->
-    <transition name="fadeIn" >
       <div class="moreChildren" v-if="isShowChild2">
             <div class="moreChildrenT">
               <ul>
-                <li>
+                <li @click="changeMoreFlag(1)">
                   <span class="moreIcon moreIcon1"></span>
                   <p>电子楼书</p>
                 </li>
-                <li>
+                <li @click="changeMoreFlag(2)">
                   <span class="moreIcon moreIcon2"></span>
                   <p>计算器</p>
                 </li>
-                <li>
+                <li @click="changeMoreFlag(3)">
                   <span class="moreIcon moreIcon3"></span>
                   <p>版权声明</p>
                 </li>
-                <li>
+                <li @click="changeMoreFlag(4)">
                   <span class="moreIcon moreIcon4"></span>
                   <p>免费申明</p>
                 </li>
@@ -164,7 +163,6 @@
               </ul>
             </div>
       </div>
-    </transition>
   </div>
 </template>
 
@@ -186,6 +184,7 @@ export default {
             sheetVisible: false,
             /*微信二维码的显示*/
             showCode: false,
+            moreFlag: "Book"
       }
     },
   methods: {
@@ -228,6 +227,18 @@ export default {
     },
     changeHomeShow(index) {
       index===1? this.homeChildren = "one" : this.homeChildren = "two";
+    },
+    /*更多页面的点击标识*/
+    changeMoreFlag(index) {
+        this.moreFlag = index;
+       /* let obj = {
+          id : this.moreFlag,
+          // 添加时间戳
+          time : Date.now().valueOf(),
+          // 添加随机数
+          random : Math.random()
+        };*/
+        this.$store.dispatch("FLAGDATA", index);
     }
   },
   watch: {
@@ -627,7 +638,7 @@ export default {
         }
         p {
           font-size: 12px;
-          line-height:  2.5rem;
+          line-height:  2.3rem;
         }
       }
     }

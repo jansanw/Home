@@ -37,11 +37,16 @@
         isShow === true ? this.typeBig = true : this.typeBig = false;
       },
       showTotalSpots(isShow) {
-        console.log(isShow);
         isShow === true ? this.showSpots = true : this.showSpots = false;
       }
     },
     computed: {},
+    //防止切换路由的时候全景图依旧显示
+    watch: {
+      '$route': function(to, from) {
+        this.showSpots = false;
+      }
+    }
 
 
   }
@@ -85,10 +90,9 @@
       left: 3%;
       top: 20%;
       z-index: 999;
-      width: 35px;
-      height: 35px;
+      width: 25px;
+      height: 25px;
       text-align: center;
-      line-height: 35px;
       border-radius: 50%;
       img {
         width: 100%;
