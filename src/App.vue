@@ -51,6 +51,8 @@
     <router-view v-if="!$route.meta.keepAlive" ></router-view>
 
     <!--音频播放占位符-->
+    <audio src="http://p9ztwuh1a.bkt.clouddn.com/982/media/152872152230310s.mp3" autoplay controls v-if="isimgRotate">
+    </audio>
 
     <!--右侧导航条-->
   <!--  <div class="rightNav" v-show="$route.meta.rightNav">
@@ -151,10 +153,11 @@
             </div>
             <div class="moreChildrenB">
               <ul>
-                <li>
-                  <span class="moreIcon moreIcon5"></span>
-                </li>
                 <li @click="changeMoreFlag(5)">
+                  <span class="moreIcon moreIcon5" :class="{imgRotate: isimgRotate}"></span>
+
+                </li>
+                <li @click="changeMoreFlag(6)">
                   <span class="moreIcon moreIcon6"></span>
                 </li>
                 <li @click="callPhone()">
@@ -184,7 +187,8 @@ export default {
             sheetVisible: false,
             /*微信二维码的显示*/
             showCode: false,
-            moreFlag: "Book"
+            moreFlag: "book",
+            isimgRotate: false
       }
     },
   methods: {
@@ -230,6 +234,10 @@ export default {
     },
     /*更多页面的点击标识*/
     changeMoreFlag(index) {
+      if(index === 5) {
+        this.isimgRotate = !this.isimgRotate;
+        return  false;
+      }
         switch(index)
         {
           case 1:
@@ -242,13 +250,14 @@ export default {
               this.moreFlag = "Copyright";
                break;
           case 4:
-            this.moreFlag = "FreeDeclare";
-            break;
-          case 5:
-            this.moreFlag = "Guide";
-            break;
+              this.moreFlag = "FreeDeclare";
+              break;
+          case 6:
+              this.moreFlag = "Guide";
+              break;
         }
         this.$store.dispatch("FLAGDATA", this.moreFlag);
+        this.isShowChild2 = false;
     }
   },
   watch: {
@@ -548,14 +557,14 @@ export default {
           }
 
           &.last {
-            height: .6rem;
-            margin: .48rem 0 .6rem 0
+            height: .4rem;
+            margin: .7rem 0 .6rem 0
           }
         }
         p {
           padding-top: 8.5/30rem;
           color: #fff;
-          font-size: 8px;
+          font-size: 10px;
         }
       }
     }
@@ -647,11 +656,28 @@ export default {
           background-size: 100% 100%;
         }
         p {
-          font-size: 12px;
+          font-size: 10px;
           line-height:  2.3rem;
         }
       }
     }
   }
+
+  /*css3的旋转360动画*/
+  @keyframes imgrotate
+  {
+    0%   {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .imgRotate {
+    animation: imgrotate 2s linear infinite;
+  }
+
+
 }
 </style>
