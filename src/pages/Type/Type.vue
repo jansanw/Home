@@ -15,14 +15,13 @@
               border="0" style="width: 100%;height: 100%;"
               allowfullscreen="true"></iframe>
           <!--关闭按钮 兼 返回-->
-          <div class="close" @click.stop = "showTotalSpots(false)">
+         <!-- <div class="close" @click.stop = "showTotalSpots(false)">
             <img src="../../../static/images/Type/arrow.png" alt="">
-          </div>
+          </div>-->
     </div>
   </div>
 </template>
 <script>
-  import CanvasKeyFrames from 'canvaskeyframes'
   export default {
     data() {
       return {

@@ -73,7 +73,7 @@ export default new Router({
       }
     },
 
-    // more部分的二级路由
+    // more 部分的二级路由用在more组件中用动态组件代替
     {
       path: '/more',
       name: 'More',
@@ -82,10 +82,6 @@ export default new Router({
         showFooter: true,
         keepAlive: true
       },
-     /* children:[
-        { path: '/more/book', component:  Book},
-        {path: "", redirect: "/more/book"}
-      ],*/
     },
   ]
 })

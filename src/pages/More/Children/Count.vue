@@ -13,7 +13,6 @@
         },
         methods: {},
         computed: {},
-
     }
 </script>
 <style lang="less" scoped>

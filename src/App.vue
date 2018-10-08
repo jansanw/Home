@@ -55,7 +55,7 @@
     </audio>
 
     <!--右侧导航条-->
-  <!--  <div class="rightNav" v-show="$route.meta.rightNav">
+    <!--  <div class="rightNav" v-show="$route.meta.rightNav">
 
       <transition name="fadeOut" v-if="showRightNav">
         <ul>
@@ -155,7 +155,6 @@
               <ul>
                 <li @click="changeMoreFlag(5)">
                   <span class="moreIcon moreIcon5" :class="{imgRotate: isimgRotate}"></span>
-
                 </li>
                 <li @click="changeMoreFlag(6)">
                   <span class="moreIcon moreIcon6"></span>
@@ -215,6 +214,7 @@ export default {
         }
       }
     },
+    /*控制右侧的导航*/
     changeRight() {
       this.showRightNav = !this.showRightNav;
     },
