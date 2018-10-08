@@ -5,8 +5,8 @@ import {
 
 export default {
   //存储标识
-  FLAGDATA({commit},index)  {
-    commit(CHANGE_MOREFLAG, {index});
+  FLAGDATA({commit},moreFlag)  {
+    commit(CHANGE_MOREFLAG, {moreFlag});
   },
 
 

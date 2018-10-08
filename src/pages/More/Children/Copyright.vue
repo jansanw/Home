@@ -1,5 +1,7 @@
 <template>
-
+      <div class="copyright">
+        copyright
+      </div>
 </template>
 <script>
     export default {

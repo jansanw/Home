@@ -53,7 +53,7 @@
     <!--音频播放占位符-->
 
     <!--右侧导航条-->
-    <div class="rightNav" v-show="$route.meta.rightNav">
+  <!--  <div class="rightNav" v-show="$route.meta.rightNav">
 
       <transition name="fadeOut" v-if="showRightNav">
         <ul>
@@ -76,7 +76,7 @@
         </ul>
       </transition>
 
-    </div>
+    </div>-->
 
     <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
@@ -154,7 +154,7 @@
                 <li>
                   <span class="moreIcon moreIcon5"></span>
                 </li>
-                <li>
+                <li @click="changeMoreFlag(5)">
                   <span class="moreIcon moreIcon6"></span>
                 </li>
                 <li @click="callPhone()">
@@ -230,15 +230,25 @@ export default {
     },
     /*更多页面的点击标识*/
     changeMoreFlag(index) {
-        this.moreFlag = index;
-       /* let obj = {
-          id : this.moreFlag,
-          // 添加时间戳
-          time : Date.now().valueOf(),
-          // 添加随机数
-          random : Math.random()
-        };*/
-        this.$store.dispatch("FLAGDATA", index);
+        switch(index)
+        {
+          case 1:
+             this.moreFlag = "book";
+             break;
+          case 2:
+              this.moreFlag = "Count";
+              break;
+          case 3:
+              this.moreFlag = "Copyright";
+               break;
+          case 4:
+            this.moreFlag = "FreeDeclare";
+            break;
+          case 5:
+            this.moreFlag = "Guide";
+            break;
+        }
+        this.$store.dispatch("FLAGDATA", this.moreFlag);
     }
   },
   watch: {
@@ -545,7 +555,7 @@ export default {
         p {
           padding-top: 8.5/30rem;
           color: #fff;
-          font-size: 12px;
+          font-size: 8px;
         }
       }
     }

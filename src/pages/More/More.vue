@@ -2,17 +2,23 @@
     <div class="more">
           <!--注意层级问题,不然会导致一些东西不能正常显示 z-indent设置大一点-->
           <!--动态组件-->
-        <component :is="currentView"></component>
+        <component :is="currentCom"></component>
     </div>
 </template>
 <script>
-  import Book from "./Children/Book.vue";
+  /*视图中的几个动态小组件*/
+  import book from "./Children/Book.vue";  // 电子楼书
+  import Count from "./Children/Count.vue";  // 计算器
+  import Copyright from "./Children/Copyright.vue"; //版权声明
+  import FreeDeclare from "./Children/FreeDeclare.vue"; //免费声明
+  import Guide from "./Children/Guide.vue";   //导航
+
   import  Swiper from "../../../static/js/swiper-4.0.5.min";
   import {mapState} from "vuex";
     export default {
         data() {
             return {
-              currentView: "Book"
+              currentCom: "book"
             }
         },
       mounted() {
@@ -27,15 +33,16 @@
           ...mapState(['moreFlag']),
         },
         components: {
-          Book
+          book,
+          Count,
+          Copyright,
+          FreeDeclare,
+          Guide
         },
-      watch: {
-        moreFlag: {
-          handler(newValue, oldValue) {
-            console.log(newValue)
-          },
-          deep: true
-        }
+      watch:{
+        moreFlag(curVal){
+          this.currentCom = curVal;
+        },
       }
     }
 </script>

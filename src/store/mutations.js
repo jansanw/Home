@@ -5,8 +5,8 @@ import {
 }  from "./mutation_type";
 export default {
   //更改标识
-  [CHANGE_MOREFLAG] (state, {index}) {
-    state.moreFlag = index;
+  [CHANGE_MOREFLAG] (state, {moreFlag}) {
+    state.moreFlag = moreFlag;
   },
 
 }

@@ -1,5 +1,7 @@
 <template>
-
+      <div class="free">
+        免费声明
+      </div>
 </template>
 <script>
     export default {
