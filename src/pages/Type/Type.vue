@@ -10,10 +10,9 @@
 
         </div>
         <div class="totalSpots" v-if="showSpots">
-        <iframe src="http://720yun.gugushuzi.com//tour/9b1ee5f3168cb5d4"
-              frameborder="no"
-              border="0" style="width: 100%;height: 100%;"
-              allowfullscreen="true"></iframe>
+          <iframe src="http://720yun.gugushuzi.com/tour/041d7d185e33f2cb"
+                  frameborder="no" border="0"
+                  style="width: 100%;height: 100%;"></iframe>
           <!--关闭按钮 兼 返回-->
          <!-- <div class="close" @click.stop = "showTotalSpots(false)">
             <img src="../../../static/images/Type/arrow.png" alt="">
@@ -69,7 +68,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: url("../../../static/images/Type/big.png") no-repeat;
+    background: url("../../../static/images/Type/huxing.jpg") no-repeat;
     background-size: 100% 100%;
   }
   .showTotalSpots {

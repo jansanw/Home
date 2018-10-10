@@ -130,7 +130,7 @@
     </transition>
 
     <!--更多的二级导航-->
-      <div class="moreChildren" v-if="isShowChild2">
+    <div class="moreChildren" v-if="isShowChild2">
             <div class="moreChildrenT">
               <ul>
                 <li @click="changeMoreFlag(1)">
@@ -165,6 +165,30 @@
               </ul>
             </div>
       </div>
+
+    <!--景观漫游的四个入口-->
+    <!--<div class="playFour" v-if="isShowChild3">
+      <ul>
+        <li>
+            <div class="imgtop imgtop1"></div>
+            <div class="imgtopTitle">主入口</div>
+        </li>
+        <li>
+          <div class="imgtop imgtop2"></div>
+          <div class="imgtopTitle">游泳池</div>
+        </li>
+        <li>
+          <div class="imgtop imgtop3"></div>
+          <div class="imgtopTitle">休闲区</div>
+        </li>
+        <li>
+          <div class="imgtop imgtop4"></div>
+          <div class="imgtopTitle">次入口</div>
+        </li>
+
+      </ul>
+    </div>-->
+
   </div>
 </template>
 
@@ -177,6 +201,7 @@ export default {
             /*部分二级子菜单的显示和隐藏*/
             isShowChild1: false,
             isShowChild2: false,
+            isShowChild3: false,
             /*二级子菜单的切换*/
             homeChildren: "one",
             /*右侧按钮条的显示和隐藏*/
@@ -196,7 +221,10 @@ export default {
         this.isShowChild1 = !this.isShowChild1;
       } else if(index === 5 ) {
         this.isShowChild2 = !this.isShowChild2;
-      } else {
+      }  else if(index === 2 ) {
+        this.isShowChild3 = !this.isShowChild3;
+      }
+      else {
         /*切换后让子导航隐藏*/
         this.initShow();
       }
@@ -204,6 +232,7 @@ export default {
     initShow() {
       this.isShowChild1 = false;
       this.isShowChild2 = false;
+      this.isShowChild3 = false;
     },
     initisActive(index) {
       for(let i =0; i < this.isActive.length;i++) {
@@ -663,6 +692,36 @@ export default {
     }
   }
 
+  /*景观漫游的四个入口*/
+  .playFour {
+    position: absolute;
+    width: 100%;
+    height: 8rem;
+    background: pink;
+    bottom: 130/30rem;
+    ul {
+      width: 100%;
+      height: 100%;
+      padding: 10%;
+      box-sizing: border-box;
+      display: flex;
+      li {
+        flex: 1;
+        .imgtop {
+          width: 80%;
+          height: 80%;
+          background: yellow;
+          background-size: 100% 100%;
+        }
+        .imgtopTitle {
+          text-align: center;
+        }
+
+      }
+    }
+
+  }
+
   /*css3的旋转360动画*/
   @keyframes imgrotate
   {
@@ -673,7 +732,6 @@ export default {
       transform: rotate(360deg);
     }
   }
-
   .imgRotate {
     animation: imgrotate 2s linear infinite;
   }
