@@ -10,10 +10,12 @@
 
     <div class="progress">
       <span class="progressSpan">{{progress}}%</span>
-      <mt-progress :value="progress">
-      <!--  <div slot="start">0%</div>
-        <div slot="end">100%</div>-->
-      </mt-progress>
+      <div class="progressBox">
+        <mt-progress :value="progress">
+          <!--  <div slot="start">0%</div>
+            <div slot="end">100%</div>-->
+        </mt-progress>
+      </div>
       <span class="progressLoading">加载资源</span>
     </div>
   </div>
@@ -22,9 +24,7 @@
   export default {
     data() {
       return {
-        timer1: null,
         progress: 0
-
       }
     },
     mounted() {
@@ -32,8 +32,10 @@
        let timer1 = setInterval(()=> {
          if(this.progress>=90) {
            this.progress = 100;
-           clearInterval(this.timer);
+           clearInterval(timer1);
            this.$router.push("/home");
+           this.progress = 0;
+           return false;
          }
          this.progress += 15;
        },150)
@@ -47,7 +49,7 @@
 
   }
 </script>
-<style lang="less" scoped>
+<style lang="less">
   .loading {
     color: #292929;
     height: 100%;
@@ -56,7 +58,7 @@
     .content {
       width: 290/30rem;
       height: 703/30rem;
-      margin: 5rem auto 2rem;
+      margin: 11rem auto 2rem;
       background: url("../../../static/images/Home/content.jpg") no-repeat;
       background-size: 100% 100%;
     }
@@ -71,18 +73,35 @@
       background-size: 100% 100%;
     }
     /*进度条*/
+    .progressBox {
+      width: 74%;
+      margin: -.4rem auto 10px;
+    }
     .progress {
       text-align: center;
+      position: relative;
+      margin-top:  -1rem;
       span {
         display: inline-block;
         &.progressSpan {
           margin-top: .3rem;
+          color: #333;
+          font-size: 17px;
+          font-weight: 400;
         }
         &.progressLoading {
-
+          position: absolute;
+          left: 50%;
+          top: 87%;
+          color: #333;
+          font-size: 13px;
+          transform: translateX(-50%);
         }
       }
     /*进度条样式修改*/
+      .mt-progress-progress {
+        background-color: #1f1f1f;
+      }
     }
   }
 </style>

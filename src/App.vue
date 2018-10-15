@@ -56,7 +56,6 @@
 
     <!--右侧导航条-->
     <!--  <div class="rightNav" v-show="$route.meta.rightNav">
-
       <transition name="fadeOut" v-if="showRightNav">
         <ul>
           <li @click="changeRight()">
@@ -77,14 +76,13 @@
           </li>
         </ul>
       </transition>
-
     </div>-->
 
     <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
           <ul class="footerNavItem">
             <router-link to="/home" tag="li" @click.native="changeShow(0)">
-              <span :class="{spanIcon1: !isActive[0],spanIcon11: isActive[0]}"></span>
+              <span :class="{spanIcon1: !isActive[0],spanIcon11: isActive[0]}" class="spanMove1"></span>
               <p>全景鸟瞰</p>
             </router-link>
 
@@ -99,12 +97,12 @@
             </router-link>
 
             <router-link to="/type" tag="li" @click.native="changeShow(3)">
-              <span :class="{spanIcon4: !isActive[3],spanIcon44: isActive[3]}"></span>
+              <span :class="{spanIcon4: !isActive[3],spanIcon44: isActive[3]}" class="spanMove4"></span>
               <p>户型鉴赏</p>
             </router-link>
 
             <router-link to="/advantage" tag="li" @click.native="changeShow(4)">
-              <span :class="{spanIcon5: !isActive[4],spanIcon55: isActive[4]}"></span>
+              <span :class="{spanIcon5: !isActive[4],spanIcon55: isActive[4]}" class="spanMove5"></span>
               <p>区位优势</p>
             </router-link>
 
@@ -167,27 +165,27 @@
       </div>
 
     <!--景观漫游的四个入口-->
-    <!--<div class="playFour" v-if="isShowChild3">
+    <div class="playFour" v-if="isShowChild3">
       <ul>
-        <li>
+        <li @click="changeAssceFlag(1)">
             <div class="imgtop imgtop1"></div>
             <div class="imgtopTitle">主入口</div>
         </li>
-        <li>
+        <li @click="changeAssceFlag(2)">
           <div class="imgtop imgtop2"></div>
           <div class="imgtopTitle">游泳池</div>
         </li>
-        <li>
+        <li @click="changeAssceFlag(3)">
           <div class="imgtop imgtop3"></div>
           <div class="imgtopTitle">休闲区</div>
         </li>
-        <li>
+        <li @click="changeAssceFlag(4)">
           <div class="imgtop imgtop4"></div>
           <div class="imgtopTitle">次入口</div>
         </li>
 
       </ul>
-    </div>-->
+    </div>
 
   </div>
 </template>
@@ -211,12 +209,16 @@ export default {
             sheetVisible: false,
             /*微信二维码的显示*/
             showCode: false,
+            /*更多组件动态标识*/
             moreFlag: "book",
+            /*景观漫游的点击标识*/
+            assceFlag: 1,
             isimgRotate: false
       }
     },
   methods: {
     changeShow(index) {
+
       if(index === 0) {
         this.isShowChild1 = !this.isShowChild1;
       } else if(index === 5 ) {
@@ -287,7 +289,28 @@ export default {
         }
         this.$store.dispatch("FLAGDATA", this.moreFlag);
         this.isShowChild2 = false;
+    },
+    /*景观漫游的点击标识*/
+    changeAssceFlag(index) {
+      switch(index)
+      {
+        case 1:
+          this.assceFlag = 1;
+          break;
+        case 2:
+          this.assceFlag = 2;
+          break;
+        case 3:
+          this.assceFlag = 3;
+          break;
+        case 4:
+          this.assceFlag = 4;
+          break;
+      }
+      this.$store.dispatch("ASSCEGDATA", this.assceFlag);
+      this.isShowChild3 = false;
     }
+
   },
   watch: {
     '$route' (to, from) {
@@ -301,7 +324,8 @@ export default {
         this.initShow();
         this.initisActive(1);
       } else if(path === "/play") {
-        this.initShow();
+        this.isShowChild1 = false;
+        this.isShowChild2 = false;
         this.initisActive(2);
       } else if(path === "/advantage"){
         this.initShow();
@@ -310,7 +334,9 @@ export default {
         this.initShow();
         this.initisActive(3);
       } else if(path === "/more") {
-        this.initShow();
+        //不能直接调用  this.initShow(); 不然默认点击不显示子菜单
+        this.isShowChild1 = false;
+        this.isShowChild3 = false;
         this.initisActive(5);
       }
     }
@@ -397,7 +423,7 @@ export default {
             }
           }
           .topIcon1, .topIcon2, .topIcon3 {
-            width: 50%;
+            width: 40%;
             height: 65%;
             background-size: 100% 100%;
           }
@@ -541,10 +567,14 @@ export default {
           width: 1.8rem;
           height: 1.8rem;
           &.spanIcon1 {
+            width: 1.8rem;
+            height: 1.5rem;
             background: url("../static/images/FooterNav/icon1.png") no-repeat;
             background-size: 100% 100%;
           }
           &.spanIcon11 {
+            width: 1.8rem;
+            height: 1.5rem;
             background: url("../static/images/FooterNav/icon11.png") no-repeat;
             background-size: 100% 100%;
           }
@@ -565,18 +595,26 @@ export default {
             background-size: 100% 100%;
           }
           &.spanIcon4 {
+            width: 1.6rem;
+            height: 1.6rem;
             background: url("../static/images/FooterNav/icon4.png") no-repeat;
             background-size: 100% 100%;
           }
           &.spanIcon44 {
+            width: 1.6rem;
+            height: 1.6rem;
             background: url("../static/images/FooterNav/icon44.png") no-repeat;
             background-size: 100% 100%;
           }
           &.spanIcon5 {
+            width: 1.6rem;
+            height: 1.6rem;
             background: url("../static/images/FooterNav/icon5.png") no-repeat;
             background-size: 100% 100%;
           }
           &.spanIcon55 {
+            width: 1.6rem;
+            height: 1.6rem;
             background: url("../static/images/FooterNav/icon55.png") no-repeat;
             background-size: 100% 100%;
           }
@@ -585,9 +623,19 @@ export default {
             background-size: 100% 100%;
           }
 
+          &.spanMove1 {
+            margin-bottom: .3rem;
+          }
+          &.spanMove4 {
+            margin-bottom: .3rem;
+          }
+          &.spanMove5 {
+            margin-bottom: .3rem;
+          }
+
           &.last {
             height: .4rem;
-            margin: .7rem 0 .6rem 0
+            margin: .8rem 0 .6rem 0
           }
         }
         p {
@@ -697,24 +745,44 @@ export default {
     position: absolute;
     width: 100%;
     height: 8rem;
-    background: pink;
-    bottom: 130/30rem;
+    z-index: 88;
+    bottom: 140/30rem;
+    border-radius: 3% 3% 0 0;
+    background: rgba(0,0,0,.45);
     ul {
       width: 100%;
       height: 100%;
-      padding: 10%;
-      box-sizing: border-box;
       display: flex;
       li {
         flex: 1;
+        height: 100%;
+        box-sizing: border-box;
+        padding-top: .5rem;
         .imgtop {
           width: 80%;
-          height: 80%;
-          background: yellow;
+          height: 75%;
+          border: 1px solid #000;
+          margin: 0 auto;
+        }
+        .imgtop1 {
+          background: url("../static/images/Play/xlz1.jpg") no-repeat;
+          background-size: 100% 100%;
+        }
+        .imgtop2 {
+          background: url("../static/images/Play/xlz2.jpg") no-repeat;
+          background-size: 100% 100%;
+        }
+        .imgtop3 {
+          background: url("../static/images/Play/xlz3.jpg") no-repeat;
+          background-size: 100% 100%;
+        }
+        .imgtop4 {
+          background: url("../static/images/Play/xlz4.jpg") no-repeat;
           background-size: 100% 100%;
         }
         .imgtopTitle {
           text-align: center;
+          font-size: 10px;
         }
 
       }

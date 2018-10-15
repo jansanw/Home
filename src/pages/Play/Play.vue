@@ -3,114 +3,99 @@
       <div class="playContainer">
         <!--laoding测试-->
         <div class="loading">
-          <div class="content">
-
-          </div>
-
-          <div class="loadingBottom">
-
-          </div>
-
           <div class="progress">
             <span class="progressSpan">{{progress}}%</span>
-            <mt-progress :value="progress">
-              <!--  <div slot="start">0%</div>
-                <div slot="end">100%</div>-->
-            </mt-progress>
+            <div class="progressBox">
+              <mt-progress :value="progress">
+              </mt-progress>
+            </div>
             <span class="progressLoading">加载资源</span>
           </div>
+          <!--加载条广告-->
+          <div class="advan"></div>
         </div>
-       <!-- <div id="preloader-4">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>-->
 
-        <iframe src="http://unrealera.gugushuzi.com/xlz/"
-                width="100%" height="100%"
-                frameborder="0" scrolling="auto" id="test">
-        </iframe>
+       <!-- <component :is="currentCom" ref="xlz"></component>-->
+        <keep-alive>
+          <iframe :src="xlzUrl"
+                  width="100%" height="100%"
+                  frameborder="0" scrolling="auto">
+          </iframe>
+        </keep-alive>
       </div>
     </div>
 </template>
 <script>
+  import {mapState} from "vuex";
+ /* import XLZ1 from "./XLZ/XLZ1.vue";
+  import XLZ2 from "./XLZ/XLZ2.vue";
+  import XLZ3 from "./XLZ/XLZ3.vue";
+  import XLZ4 from "./XLZ/XLZ4.vue";*/
   export default {
     data() {
       return {
-        progress: 0
+        progress: 0,
+        xlzUrl: "http://unrealera.gugushuzi.com/xlz/",
+        currentCom: "XLZ1",
       }
     },
     mounted() {
       this.$nextTick(()=> {
         let timer1 = setInterval(()=> {
           if(this.progress>=90) {
-            this.progress = 99;
-            clearInterval(this.timer);
+            this.progress = 98;
+           /* clearInterval(timer1);*/
             return false;
           }
           this.progress += 15;
-        },150)
+        },150);
       });
     },
     methods: {},
-    computed: {},
+    computed: {
+      ...mapState(['assceFlag']),
+    },
+    components: {
+    },
+    watch:{
+      assceFlag(curVal){
+        switch(curVal)
+        {
+          case 1:
+            this.progress = 0;
+            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz/";
+//            this.currentCom = "XLZ1";
+            break;
+          case 2:
+            this.progress = 0;
+            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz2/";
+//              this.currentCom = "XLZ2";
+            break;
+          case 3:
+            this.progress = 0;
+            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz3/";
+//            this.currentCom = "XLZ3";
+            break;
+          case 4:
+            this.progress = 0;
+            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz4/";
+//            this.currentCom = "XLZ4";
+            break;
+        }
+      },
+    }
 
   }
 </script>
-<style lang="less" scoped>
+<style lang="less">
   .play {
     height: 100%;
+    color: red;
     .playContainer {
       height: 100%;
     }
-   /*圆圈加载动画*/
-      /*  #preloader-4{
-      !*position: relative;*!
-      position: absolute;
-      top: 50%;
-      left: 40%;
-      z-index: -1;
-      transform: translate(-50%,-50%);
-    }
-    #preloader-4 span{
-      position:absolute;
-      width:16px;
-      height: 16px;
-      border-radius: 999px;
-      background: #aaa;
-      animation: bounce 1s infinite linear;
-    }
-    #preloader-4 span:nth-child(1){
-      left:0;
-      animation-delay: 0s;
-    }
-    #preloader-4 span:nth-child(2){
-      left:20px;
-      animation-delay: 0.25s;
-    }
-    #preloader-4 span:nth-child(3){
-      left:40px;
-      animation-delay: 0.5s;
-    }
-    #preloader-4 span:nth-child(4){
-      left:60px;
-      animation-delay: 0.75s;
-    }
-    #preloader-4 span:nth-child(5){
-      left:80px;
-      animation-delay: 1.0s;
-    }
-    @keyframes bounce{
-      0%{transform: translateY(0px);opacity: 0.5;}
-      50%{transform: translateY(-30px);opacity: 1.0;}
-      100%{transform: translateY(0px);opacity: 0.5;}
-    }*/
 
   }
-
-
   .loading {
     position: absolute;
     width: 100%;
@@ -120,36 +105,45 @@
     overflow: hidden;
     background: #fff;
     z-index: -1;
-    .content {
-      width: 290/30rem;
-      height: 703/30rem;
-      margin: 5rem auto 2rem;
-      background: url("../../../static/images/Home/content.jpg") no-repeat;
-      background-size: 100% 100%;
-    }
-    .loadingBottom {
-      width: 10rem;
-      height: 25px;
-      position: absolute;
-      left: 50%;
-      bottom: 2%;
-      transform: translateX(-50%);
-      background: url("../../../static/images/Home/bottom.jpg") no-repeat;
-      background-size: 100% 100%;
-    }
     /*进度条*/
+    .progressBox {
+      width: 74%;
+      margin: -.4rem auto 10px;
+      /*进度条样式修改*/
+      .mt-progress-progress {
+        background-color: #1f1f1f;
+      }
+    }
     .progress {
+      margin-top: 19rem;
       text-align: center;
+      position: relative;
       span {
         display: inline-block;
         &.progressSpan {
           margin-top: .3rem;
+          color: #333;
+          font-size: 17px;
+          font-weight: 400;
         }
         &.progressLoading {
-
+          position: absolute;
+          left: 50%;
+          top: 87%;
+          color: #333;
+          font-size: 13px;
+          transform: translateX(-50%);
         }
       }
       /*进度条样式修改*/
+    }
+    /*进度条下面的广告*/
+    .advan {
+      width: 10rem;
+      height: 5rem;
+      margin: 2rem auto;
+      background: url("../../../static/images/Home/advan.jpg") no-repeat;
+      background-size: 100% 100%;
     }
   }
 </style>

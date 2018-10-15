@@ -1,16 +1,16 @@
 <template>
   <div class="type">
         <!--控制户型的大图显示-->
-        <div class="showTypeBig" @click = "showTypeBig(true)">
+       <!-- <div class="showTypeBig" @click = "showTypeBig(true)">
         </div>
         <div class="typeBig" v-show="typeBig" @click.stop = "showTypeBig(false)">
-        </div>
+        </div>-->
         <!--全景样式-->
         <div class="showTotalSpots"  @click = "showTotalSpots(true)">
 
         </div>
         <div class="totalSpots" v-if="showSpots">
-          <iframe src="http://720yun.gugushuzi.com/tour/041d7d185e33f2cb"
+          <iframe src="https://720yun.com/t/5a5jvssfsk2?scene_id=19920192"
                   frameborder="no" border="0"
                   style="width: 100%;height: 100%;"></iframe>
           <!--关闭按钮 兼 返回-->
@@ -73,11 +73,9 @@
   }
   .showTotalSpots {
     position: absolute;
-    width: 25%;
-    height: 13%;
-    left: 10%;
-    top: 64%;
-   /* background: pink;*/
+    width: 100%;
+    top: 4rem;
+    bottom: 130/30rem;
   }
   .totalSpots {
     position: absolute;
