@@ -2,7 +2,7 @@
     <div class="play">
       <div class="playContainer">
         <!--laoding测试-->
-        <div class="loading">
+        <div class="loading" v-show="isShowLoading">
           <div class="progress">
             <span class="progressSpan">{{progress}}%</span>
             <div class="progressBox">
@@ -12,7 +12,18 @@
             <span class="progressLoading">加载资源</span>
           </div>
           <!--加载条广告-->
-          <div class="advan"></div>
+        <!--  <div class="advan"></div>-->
+        </div>
+
+
+        <!--loading页面下图片-->
+        <div class="loadingImg"
+             :class="{
+                loadingImg1: xlzImgFlag===1,
+                loadingImg2: xlzImgFlag===2,
+                loadingImg3: xlzImgFlag===3,
+                loadingImg4: xlzImgFlag===4
+              }" v-show="isShowloadingImg">
         </div>
 
        <!-- <component :is="currentCom" ref="xlz"></component>-->
@@ -35,8 +46,11 @@
     data() {
       return {
         progress: 0,
-        xlzUrl: "http://unrealera.gugushuzi.com/xlz/",
+        xlzUrl: "http://unrealera.gugushuzi.com/test/xlz/",
         currentCom: "XLZ1",
+        xlzImgFlag: 1,
+        isShowLoading: true,
+        isShowloadingImg: true
       }
     },
     mounted() {
@@ -63,26 +77,42 @@
         {
           case 1:
             this.progress = 0;
-            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz/";
+            this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz/";
 //            this.currentCom = "XLZ1";
+            this.xlzImgFlag = 1;
             break;
           case 2:
             this.progress = 0;
-            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz2/";
+            this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz2/";
 //              this.currentCom = "XLZ2";
+            this.xlzImgFlag = 2;
             break;
           case 3:
             this.progress = 0;
-            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz3/";
+            this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz3/";
 //            this.currentCom = "XLZ3";
+            this.xlzImgFlag = 3;
             break;
           case 4:
             this.progress = 0;
-            this.xlzUrl = "http://unrealera.gugushuzi.com/xlz4/";
+            this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz4/";
 //            this.currentCom = "XLZ4";
+            this.xlzImgFlag = 4;
             break;
         }
       },
+
+      xlzUrl() {
+        this.isShowLoading = true;
+        this.isShowloadingImg = true;
+        let iframe = document.querySelector("iframe");
+        iframe.onload = function(){
+//          alert("Local iframe is now loaded.");
+          this.isShowLoading = false;
+          this.isShowloadingImg = false;
+        };
+      }
+
     }
 
   }
@@ -101,9 +131,9 @@
     width: 100%;
     top: 4rem;
     bottom: 130/30rem;
-    color: #292929;
+    color: #000;
     overflow: hidden;
-    background: #fff;
+    background: rgba(255,255,255,.35);
     z-index: -1;
     /*进度条*/
     .progressBox {
@@ -122,7 +152,7 @@
         display: inline-block;
         &.progressSpan {
           margin-top: .3rem;
-          color: #333;
+          color: #000;
           font-size: 17px;
           font-weight: 400;
         }
@@ -130,7 +160,7 @@
           position: absolute;
           left: 50%;
           top: 87%;
-          color: #333;
+          color: #000;
           font-size: 13px;
           transform: translateX(-50%);
         }
@@ -143,6 +173,29 @@
       height: 5rem;
       margin: 2rem auto;
       background: url("../../../static/images/Home/advan.jpg") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+
+  .loadingImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    &.loadingImg1 {
+      background: url("../../../static/images/Play/xlz1.jpg") no-repeat;
+      background-size: 100% 100%;
+    }
+    &.loadingImg2 {
+      background: url("../../../static/images/Play/xlz2.jpg") no-repeat;
+      background-size: 100% 100%;
+    }
+    &.loadingImg3 {
+      background: url("../../../static/images/Play/xlz3.jpg") no-repeat;
+      background-size: 100% 100%;
+    }
+    &.loadingImg4 {
+      background: url("../../../static/images/Play/xlz4.jpg") no-repeat;
       background-size: 100% 100%;
     }
   }
