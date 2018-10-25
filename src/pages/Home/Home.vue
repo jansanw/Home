@@ -25,7 +25,7 @@
         data() {
             return {
               SpotsIndex: 1,
-              SpotsUrl: "http://720yun.gugushuzi.com/tour/6c2be9fdc79d3fe3"
+              SpotsUrl: "http://720yun.gugushuzi.com/tour/6168daebdcaf6d64"
             }
         },
        props: {
@@ -38,7 +38,7 @@
                         return false;
                       } else {
                         this.SpotsIndex = 1;
-                        this.SpotsUrl = "http://720yun.gugushuzi.com/tour/6c2be9fdc79d3fe3"
+                        this.SpotsUrl = "http://720yun.gugushuzi.com/tour/6168daebdcaf6d64"
                       }
               } else {
                       if(this.SpotsIndex === 2) {
