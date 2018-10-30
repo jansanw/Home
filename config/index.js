@@ -10,7 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+     proxyTable: {},
     /*proxyTable: {
       '/api': {
         target: 'https://mta.qq.com',//设置你调用的接口域名和端口号 别忘了加http
@@ -21,8 +21,9 @@ module.exports = {
       }
     },*/
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+     host: 'localhost', // can be overwritten by process.env.HOST
+    //host: '192.168.0.112', // can be overwritten by process.env.HOST
+    port: 8080, // can npm   be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,

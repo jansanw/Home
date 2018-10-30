@@ -14,8 +14,6 @@
           <!--加载条广告-->
         <!--  <div class="advan"></div>-->
         </div>
-
-
         <!--loading页面下图片-->
         <div class="loadingImg"
              :class="{

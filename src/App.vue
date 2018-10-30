@@ -51,9 +51,12 @@
     <router-view v-if="!$route.meta.keepAlive" ></router-view>
 
     <!--音频播放占位符-->
-    <audio src="http://p9ztwuh1a.bkt.clouddn.com/982/media/152872152230310s.mp3" autoplay controls v-if="isimgRotate">
+    <audio src="http://720yun.gugushuzi.com/project/ylyg/BGM.mp3" autoplay controls id="mp3" v-if="isimgRotate">
     </audio>
 
+<!--http://p9ztwuh1a.bkt.clouddn.com/982/media/152872152230310s.mp3 audio:not([controls]) {
+    display: none !important;
+}-->
     <!--右侧导航条-->
     <!--  <div class="rightNav" v-show="$route.meta.rightNav">
       <transition name="fadeOut" v-if="showRightNav">
@@ -216,6 +219,15 @@ export default {
             isimgRotate: false
       }
     },
+  mounted() {
+      this.$nextTick(()=> {
+        setTimeout(()=> {
+          this.isimgRotate = true;
+          this.isimgRotate = false;
+          this.isimgRotate = true;
+        },5000);
+      })
+  },
   methods: {
     changeShow(index) {
 
@@ -317,7 +329,7 @@ export default {
       let path = this.$route.path;
       if(path === "/home") {
         /*此处可以进行优化*/
-        location.reload();
+//        location.reload();
         this.initShow();
         this.initisActive(0);
       } else if(path === "/spots") {
@@ -348,6 +360,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  audio {
+    color: transparent !important;
+  }
 
 #app {
   position: relative;

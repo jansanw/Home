@@ -30,5 +30,17 @@
     <script language="JavaScript" type="text/javascript" src="/static/js/jquery-1.9.1.js?v=2.0"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="./static/js/jssdk.js"></script>
+    <script>
+      let _mtac = {};
+      (function() {
+        let mta = document.createElement("script");
+        mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500652864");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+      })();
+    </script>
+
   </body>
 </html>

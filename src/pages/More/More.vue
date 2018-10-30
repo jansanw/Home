@@ -49,7 +49,7 @@
 <style lang="less" scoped>
   .more {
     height: 100%;
-    color: red;
+    background: #ccc;
     .swiper-container {
       height: 100%;
       .slide1 {

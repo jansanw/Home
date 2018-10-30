@@ -23,10 +23,17 @@ Vue.use(Vuex);
 /*引入store*/
 import store from "./store";
 
+// 图片懒加载
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad,{
+  error:'../static/loading.png',
+  loading:'../static/loading.png'
+})
+
 new Vue({
   el: '#app',
   router,
   store,
   components: { App },
   template: '<App/>'
-})
+});

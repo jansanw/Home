@@ -1,22 +1,17 @@
 <template>
   <div class="type">
-        <!--控制户型的大图显示-->
-       <!-- <div class="showTypeBig" @click = "showTypeBig(true)">
-        </div>
-        <div class="typeBig" v-show="typeBig" @click.stop = "showTypeBig(false)">
-        </div>-->
         <!--全景样式-->
+        <img v-lazy="imgUrl" alt="" class="img">
         <div class="showTotalSpots"  @click = "showTotalSpots(true)">
-
         </div>
         <div class="totalSpots" v-if="showSpots">
           <iframe src="https://720yun.com/t/5a5jvssfsk2?scene_id=19920192"
                   frameborder="no" border="0"
                   style="width: 100%;height: 100%;"></iframe>
           <!--关闭按钮 兼 返回-->
-         <!-- <div class="close" @click.stop = "showTotalSpots(false)">
+          <div class="close" @click.stop = "showTotalSpots(false)">
             <img src="../../../static/images/Type/arrow.png" alt="">
-          </div>-->
+          </div>
     </div>
   </div>
 </template>
@@ -25,15 +20,13 @@
     data() {
       return {
         typeBig: false,
-        showSpots: false
+        showSpots: false,
+        imgUrl: "./static/images/Type/type.jpg"
       }
     },
     mounted() {
     },
     methods: {
-      showTypeBig(isShow) {
-        isShow === true ? this.typeBig = true : this.typeBig = false;
-      },
       showTotalSpots(isShow) {
         isShow === true ? this.showSpots = true : this.showSpots = false;
       }
@@ -52,8 +45,17 @@
 <style lang="less" scoped>
   .type {
     height: 100%;
-    background: url("../../../static/images/Type/type.jpg") no-repeat;
-    background-size: 100% 100%;
+    /*background: url("../../../static/images/Type/type.jpg") no-repeat;
+    background-size: 100% 100%;*/
+    background: #ccc;
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
   }
   .showTypeBig {
     position: absolute;

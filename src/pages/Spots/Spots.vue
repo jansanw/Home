@@ -1,12 +1,15 @@
 <template>
     <div class="spots">
-
+      <img v-lazy="imgUrl" alt="" class="img">
     </div>
 </template>
 <script>
     export default {
         data() {
-            return {}
+            return {
+//              imgUrl: "../static/images/Spots/spots.jpg",
+              imgUrl: "./static/images/Spots/spots.jpg"
+            }
         },
         methods: {},
         computed: {},
@@ -16,7 +19,10 @@
 <style lang="less" scoped>
   .spots {
     height: 100%;
-    background: url("../../../static/images/Spots/spots.jpg") no-repeat;
-    background-size: 100% 100%;
+    background: #ccc;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>
