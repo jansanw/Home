@@ -56,11 +56,11 @@
         let timer1 = setInterval(()=> {
           if(this.progress>=90) {
             this.progress = 98;
-           /* clearInterval(timer1);*/
+            clearInterval(timer1);
             return false;
           }
           this.progress += 15;
-        },150);
+        },2000);
       });
     },
     methods: {},

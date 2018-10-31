@@ -3,18 +3,14 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 /*主要的组件实现按需加载*/
-import Home from "../pages/Home/Home.vue"; // 此处有遗留问题 自动刷新问题
+// import Home from "../pages/Home/Home.vue";
+const Home = ()=> import("../pages/Home/Home.vue");
 const HomeLoading = ()=> import("../pages/Loading/HomeLoading.vue");
 const Spots = ()=> import("../pages/Spots/Spots.vue");
 const Play = ()=> import("../pages/Play/Play.vue");
 const Type = ()=> import("../pages/Type/Type.vue");
 const Advantage = ()=> import("../pages/Advantage/Advantage.vue");
 const More = ()=> import("../pages/More/More.vue");
-
-
-/*更多部分的二级路由*/
-import Book from "../pages/More/Children/Book.vue";
-
 
 export default new Router({
   routes: [

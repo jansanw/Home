@@ -86,7 +86,7 @@
     .close {
       position: absolute;
       left: 3%;
-      top: 20%;
+      top: 10%;
       z-index: 999;
       width: 25px;
       height: 25px;

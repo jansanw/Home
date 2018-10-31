@@ -91,7 +91,7 @@
         display: flex;
        li {
          width: 45%;
-         margin-right: 5%;
+         margin-right: 10%;
          height: 100%;
          &.spots1 {
            background: url("../../../static/images/Home/dayf.png") no-repeat;
@@ -99,7 +99,7 @@
 
          }
          &.spots2 {
-           width: 40%;
+           width: 35%;
            height: 90%;
            background: url("../../../static/images/Home/nightf.png") no-repeat;
            background-size: 100% 100%;

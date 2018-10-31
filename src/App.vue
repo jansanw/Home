@@ -54,33 +54,6 @@
     <audio src="http://720yun.gugushuzi.com/project/ylyg/BGM.mp3" autoplay controls id="mp3" v-if="isimgRotate">
     </audio>
 
-<!--http://p9ztwuh1a.bkt.clouddn.com/982/media/152872152230310s.mp3 audio:not([controls]) {
-    display: none !important;
-}-->
-    <!--右侧导航条-->
-    <!--  <div class="rightNav" v-show="$route.meta.rightNav">
-      <transition name="fadeOut" v-if="showRightNav">
-        <ul>
-          <li @click="changeRight()">
-            <span class="right1"></span>
-          </li>
-        </ul>
-      </transition>
-      <transition name="fadeOut" v-else>
-        <ul>
-          <li @click="changeRight()">
-            <span class="right11"></span>
-          </li>
-          <li>
-            <span class="right2"></span>
-          </li>
-          <li>
-            <span class="right3"></span>
-          </li>
-        </ul>
-      </transition>
-    </div>-->
-
     <!--底部导航条-->
     <div class="footerNav" v-show="$route.meta.showFooter">
           <ul class="footerNavItem">
@@ -225,6 +198,16 @@ export default {
           this.isimgRotate = true;
           this.isimgRotate = false;
           this.isimgRotate = true;
+          // 处理ios的音频默认不播放
+          if(this.isimgRotate) {
+            let  u = navigator.userAgent;
+            let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            if(isiOS) {
+              let music = document.getElementById("mp3")[0];
+              music.play();
+            }
+          }
+
         },5000);
       })
   },
@@ -279,6 +262,14 @@ export default {
     changeMoreFlag(index) {
       if(index === 5) {
         this.isimgRotate = !this.isimgRotate;
+        if(this.isimgRotate) {
+          let  u = navigator.userAgent;
+          let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+          if(isiOS) {
+            let music = document.getElementById("mp3")[0];
+            music.play();
+          }
+        }
         return  false;
       }
         switch(index)
