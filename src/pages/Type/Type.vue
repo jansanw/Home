@@ -2,8 +2,14 @@
   <div class="type">
         <!--全景样式-->
         <img v-lazy="imgUrl" alt="" class="img">
-        <div class="showTotalSpots"  @click = "showTotalSpots(true)">
+        <!--点击进去详情页的按钮-->
+        <div class="showTotalSpots1"  @click = "showTotalSpots(true)" v-if="!showSpots">
         </div>
+        <div class="showTotalSpots2"  @click = "showTotalSpots(true)" v-if="!showSpots">
+        </div>
+        <div class="showTotalSpots3"  @click = "showTotalSpots(true)" v-if="!showSpots">
+        </div>
+
         <div class="totalSpots" v-if="showSpots">
           <iframe src="https://720yun.com/t/5a5jvssfsk2?scene_id=19920192"
                   frameborder="no" border="0"
@@ -45,8 +51,6 @@
 <style lang="less" scoped>
   .type {
     height: 100%;
-    /*background: url("../../../static/images/Type/type.jpg") no-repeat;
-    background-size: 100% 100%;*/
     background: #ccc;
     img {
       position: absolute;
@@ -73,11 +77,24 @@
     background: url("../../../static/images/Type/huxing.jpg") no-repeat;
     background-size: 100% 100%;
   }
-  .showTotalSpots {
+  .showTotalSpots1,  .showTotalSpots2,  .showTotalSpots3
+  {
     position: absolute;
-    width: 100%;
-    top: 4rem;
-    bottom: 130/30rem;
+    width: 18%;
+    height: 4%;
+    z-index: 2;
+  }
+  .showTotalSpots1 {
+    left: 11.2%;
+    top: 59.9%;
+  }
+  .showTotalSpots2 {
+    left: 44.2%;
+    top: 56.4%;
+  }
+  .showTotalSpots3 {
+    left: 73.2%;
+    top: 59.9%;
   }
   .totalSpots {
     position: absolute;
@@ -98,4 +115,5 @@
       }
     }
   }
+
 </style>

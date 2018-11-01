@@ -6,11 +6,7 @@ import router from './router'
 
 Vue.config.productionTip = false;
 
-import Krpano from "vue-krpano";
-Vue.use(Krpano);
-
 import 'jquery';
-import * as SpriteSpin from "spritespin";
 /*MintUI*/
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';

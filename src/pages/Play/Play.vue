@@ -23,8 +23,6 @@
                 loadingImg4: xlzImgFlag===4
               }" v-show="isShowloadingImg">
         </div>
-
-       <!-- <component :is="currentCom" ref="xlz"></component>-->
         <keep-alive>
           <iframe :src="xlzUrl"
                   width="100%" height="100%"
@@ -36,10 +34,7 @@
 </template>
 <script>
   import {mapState} from "vuex";
- /* import XLZ1 from "./XLZ/XLZ1.vue";
-  import XLZ2 from "./XLZ/XLZ2.vue";
-  import XLZ3 from "./XLZ/XLZ3.vue";
-  import XLZ4 from "./XLZ/XLZ4.vue";*/
+  import { Toast } from 'mint-ui';
   export default {
     data() {
       return {
@@ -76,36 +71,35 @@
           case 1:
             this.progress = 0;
             this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz/";
-//            this.currentCom = "XLZ1";
             this.xlzImgFlag = 1;
             break;
           case 2:
             this.progress = 0;
             this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz2/";
-//              this.currentCom = "XLZ2";
             this.xlzImgFlag = 2;
             break;
           case 3:
             this.progress = 0;
             this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz3/";
-//            this.currentCom = "XLZ3";
             this.xlzImgFlag = 3;
             break;
           case 4:
             this.progress = 0;
             this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz4/";
-//            this.currentCom = "XLZ4";
             this.xlzImgFlag = 4;
             break;
         }
       },
-
       xlzUrl() {
         this.isShowLoading = true;
         this.isShowloadingImg = true;
         let iframe = document.querySelector("iframe");
+        Toast({
+          message: '初始化滑动需要几秒,请您耐心等待....',
+          position: 'center',
+          duration: 5000
+        });
         iframe.onload = function(){
-//          alert("Local iframe is now loaded.");
           this.isShowLoading = false;
           this.isShowloadingImg = false;
         };

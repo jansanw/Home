@@ -3,13 +3,40 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="../../../../static/images/More/more1.png">
-        </div>
-        <div class="swiper-slide" v-for="item in imgList" :key="item.id">
-          <img v-lazy="item.url" alt="">
+          <img data-src="../../../../static/images/More/more1.png" class="swiper-lazy" >
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img src="../../../../static/images/More/more9.jpg">
+          <img data-src="../../../../static/images/More/more2.jpg" class="swiper-lazy" >
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more3.jpg" class="swiper-lazy" >
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more4.jpg" class="swiper-lazy" >
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more5.jpg" class="swiper-lazy" >
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more6.jpg" class="swiper-lazy" >
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more7.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more8.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="../../../../static/images/More/more9.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
       </div>
     </div>
@@ -34,7 +61,10 @@
     mounted() {
       this.$nextTick(()=> {
         let swiper = new Swiper('.swiper-container', {
-//          loop: true
+          lazy: true,
+          loop: true, //
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper
+          observeParents:true,//修改swiper的父元素时，自动初始化swiper
         });
       })
     },
