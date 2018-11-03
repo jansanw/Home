@@ -39,7 +39,7 @@
     data() {
       return {
         progress: 0,
-        xlzUrl: "http://unrealera.gugushuzi.com/test/xlz/",
+        xlzUrl: "http://unrealera.gugushuzi.com/test/xlz4/",
         currentCom: "XLZ1",
         xlzImgFlag: 1,
         isShowLoading: true,
@@ -47,7 +47,9 @@
       }
     },
     mounted() {
+
       this.$nextTick(()=> {
+        this.$store.dispatch("ASSCEGDATA", 1);
         let timer1 = setInterval(()=> {
           if(this.progress>=90) {
             this.progress = 98;
@@ -55,7 +57,7 @@
             return false;
           }
           this.progress += 15;
-        },2000);
+        },1500);
       });
     },
     methods: {},
@@ -68,6 +70,9 @@
       assceFlag(curVal){
         switch(curVal)
         {
+          case 0:
+            this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz4/";
+            break;
           case 1:
             this.progress = 0;
             this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz/";

@@ -203,7 +203,7 @@ export default {
             let  u = navigator.userAgent;
             let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
             if(isiOS) {
-              let music = document.getElementById("mp3")[0];
+              let music = document.getElementById("mp3");
               music.play();
             }
           }

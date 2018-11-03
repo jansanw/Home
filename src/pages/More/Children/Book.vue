@@ -3,39 +3,39 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more1.png" class="swiper-lazy" >
+          <img data-src="./static/images/More/more1.png" class="swiper-lazy" >
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more2.jpg" class="swiper-lazy" >
+          <img data-src="./static/images/More/more2.jpg" class="swiper-lazy" >
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more3.jpg" class="swiper-lazy" >
+          <img data-src="./static/images/More/more3.jpg" class="swiper-lazy" >
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more4.jpg" class="swiper-lazy" >
+          <img data-src="./static/images/More/more4.jpg" class="swiper-lazy" >
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more5.jpg" class="swiper-lazy" >
+          <img data-src="./static/images/More/more5.jpg" class="swiper-lazy" >
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more6.jpg" class="swiper-lazy" >
+          <img data-src="./static/images/More/more6.jpg" class="swiper-lazy" >
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more7.jpg" class="swiper-lazy">
+          <img data-src="./static/images/More/more7.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more8.jpg" class="swiper-lazy">
+          <img data-src="./static/images/More/more8.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
         <div class="swiper-slide">
-          <img data-src="../../../../static/images/More/more9.jpg" class="swiper-lazy">
+          <img data-src="./static/images/More/more9.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
       </div>
