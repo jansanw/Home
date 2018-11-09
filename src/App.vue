@@ -145,19 +145,23 @@
       <ul>
         <li @click="changeAssceFlag(1)">
             <div class="imgtop imgtop1"></div>
-            <div class="imgtopTitle">主入口</div>
+            <div class="imgtopTitle">周边远景</div>
         </li>
         <li @click="changeAssceFlag(2)">
           <div class="imgtop imgtop2"></div>
-          <div class="imgtopTitle">游泳池</div>
+          <div class="imgtopTitle">主入口</div>
         </li>
         <li @click="changeAssceFlag(3)">
           <div class="imgtop imgtop3"></div>
-          <div class="imgtopTitle">休闲区</div>
+          <div class="imgtopTitle">小区景观</div>
         </li>
         <li @click="changeAssceFlag(4)">
           <div class="imgtop imgtop4"></div>
-          <div class="imgtopTitle">次入口</div>
+          <div class="imgtopTitle">游泳池</div>
+        </li>
+        <li @click="changeAssceFlag(5)">
+          <div class="imgtop imgtop5"></div>
+          <div class="imgtopTitle">楼层景观</div>
         </li>
 
       </ul>
@@ -308,6 +312,9 @@ export default {
           break;
         case 4:
           this.assceFlag = 4;
+          break;
+        case 5:
+          this.assceFlag = 5;
           break;
       }
       this.$store.dispatch("ASSCEGDATA", this.assceFlag);
@@ -784,6 +791,10 @@ export default {
         }
         .imgtop4 {
           background: url("../static/images/Play/xlz4.jpg") no-repeat;
+          background-size: 100% 100%;
+        }
+        .imgtop5 {
+          background: url("../static/images/Play/xlz5.jpg") no-repeat;
           background-size: 100% 100%;
         }
         .imgtopTitle {

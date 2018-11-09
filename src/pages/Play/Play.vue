@@ -20,7 +20,8 @@
                 loadingImg1: xlzImgFlag===1,
                 loadingImg2: xlzImgFlag===2,
                 loadingImg3: xlzImgFlag===3,
-                loadingImg4: xlzImgFlag===4
+                loadingImg4: xlzImgFlag===4,
+                loadingImg5: xlzImgFlag===5
               }" v-show="isShowloadingImg">
         </div>
         <keep-alive>
@@ -92,6 +93,11 @@
             this.progress = 0;
             this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz4/";
             this.xlzImgFlag = 4;
+            break;
+          case 5:
+            this.progress = 0;
+            this.xlzUrl = "http://unrealera.gugushuzi.com/test/xlz5/";
+            this.xlzImgFlag = 5;
             break;
         }
       },
@@ -193,6 +199,10 @@
     }
     &.loadingImg4 {
       background: url("../../../static/images/Play/xlz4.jpg") no-repeat;
+      background-size: 100% 100%;
+    }
+    &.loadingImg5 {
+      background: url("../../../static/images/Play/xlz5.jpg") no-repeat;
       background-size: 100% 100%;
     }
   }
