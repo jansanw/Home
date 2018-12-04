@@ -8,7 +8,7 @@
         </div>
         <div class="topGuideCenter">
           <p>椰林阳光</p>
-          <p>15008278121</p>
+          <p class="pTitle">瞰江大宅、墅级洋房</p>
         </div>
         <div class="topGuideRight" >
               <ul>
@@ -139,7 +139,6 @@
               </ul>
             </div>
       </div>
-
     <!--景观漫游的四个入口-->
     <div class="playFour" v-if="isShowChild3">
       <ul>
@@ -151,28 +150,28 @@
           <div class="imgtop imgtop2"></div>
           <div class="imgtopTitle">主入口</div>
         </li>
-        <li @click="changeAssceFlag(3)">
-          <div class="imgtop imgtop3"></div>
-          <div class="imgtopTitle">小区景观</div>
-        </li>
+          <li @click="changeAssceFlag(3)">
+         <div class="imgtop imgtop3"></div>
+         <div class="imgtopTitle">次入口</div>
+       </li>
         <li @click="changeAssceFlag(4)">
           <div class="imgtop imgtop4"></div>
-          <div class="imgtopTitle">游泳池</div>
+          <div class="imgtopTitle">中轴景观</div>
         </li>
-        <li @click="changeAssceFlag(5)">
+    <!--    <li @click="changeAssceFlag(5)">
           <div class="imgtop imgtop5"></div>
           <div class="imgtopTitle">楼层景观</div>
-        </li>
+        </li>-->
+
 
       </ul>
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
-    data() {
+  data() {
       return {
             /*控制底部的导航是否激活状态*/
             isActive: [true,false,false,false,false,false],
@@ -203,21 +202,20 @@ export default {
           this.isimgRotate = false;
           this.isimgRotate = true;
           // 处理ios的音频默认不播放
-          if(this.isimgRotate) {
+          /*if(this.isimgRotate) {
             let  u = navigator.userAgent;
             let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
             if(isiOS) {
               let music = document.getElementById("mp3");
               music.play();
             }
-          }
+          }*/
 
         },5000);
       })
   },
   methods: {
     changeShow(index) {
-
       if(index === 0) {
         this.isShowChild1 = !this.isShowChild1;
       } else if(index === 5 ) {
@@ -320,14 +318,11 @@ export default {
       this.$store.dispatch("ASSCEGDATA", this.assceFlag);
       this.isShowChild3 = false;
     }
-
   },
   watch: {
     '$route' (to, from) {
       let path = this.$route.path;
       if(path === "/home") {
-        /*此处可以进行优化*/
-//        location.reload();
         this.initShow();
         this.initisActive(0);
       } else if(path === "/spots") {
@@ -373,6 +368,7 @@ export default {
     top: 0;
     width: 100%;
     height: 4rem;
+    max-height: 100px;
     display: flex;
     z-index: 999;
     background: rgba(0,0,0,.3);
@@ -386,8 +382,10 @@ export default {
       .person {
         width: 3rem;
         height: 3rem;
+        max-height: 80px;
+        max-width: 80px;
         margin-left: .5rem;
-        background: url("../static/images/Home/person.png") no-repeat;
+        background: url("../static/images/Home/touxiang.png") no-repeat;
         background-size: 100% 100%;
       }
     }
@@ -398,12 +396,15 @@ export default {
       flex: 2;
       p {
         margin-top: .1rem;
+        &.pTitle {
+          font-size: 12px;
+        }
       }
     }
     .topGuideRight {
       box-sizing: border-box;
       padding-left: 7.5rem;
-      flex: 2.5;
+      flex: 2;
       display: flex;
       align-items: center;
       ul {
@@ -421,7 +422,6 @@ export default {
             background: url("../static/images/Home/top1.png") no-repeat;
           }
           .topIcon2 {
-           /* background: url("") no-repeat;*/
             img {
               width: 100%;
               height: 100%;
@@ -436,22 +436,22 @@ export default {
             }
           }
           .topIcon1, .topIcon2, .topIcon3 {
-            width: 40%;
+            width: 45%;
             height: 65%;
+            max-width: 30px;
+            max-height: 30px;
             background-size: 100% 100%;
           }
         }
       }
     }
   }
-
   /*顶部对应的电话等三个图标部分*/
   .phone {
     position: absolute;
     width: 100%;
 
   }
-
   /*顶部微信二维码部分*/
   .code {
     position: absolute;
@@ -563,8 +563,8 @@ export default {
     left: 0;
     bottom: 0;
     width: 100%;
-   /* height: 145/30rem;*/
     height: 130/30rem;
+    max-height: 100px;
     background: rgba(0,0,0,.6);
     z-index: 999;
     .footerNavItem {
@@ -579,6 +579,8 @@ export default {
           display: inline-block;
           width: 1.8rem;
           height: 1.8rem;
+          max-height: 25px;
+          max-width: 25px;
           &.spanIcon1 {
             width: 1.8rem;
             height: 1.5rem;
@@ -635,7 +637,6 @@ export default {
             background: url("../static/images/FooterNav/icon6.png") no-repeat;
             background-size: 100% 100%;
           }
-
           &.spanMove1 {
             margin-bottom: .3rem;
           }
@@ -702,6 +703,7 @@ export default {
     left: 0;
     width: 100%;
     height: 10rem;
+    max-height: 120px;
     z-index: 99;
     border-radius: 30px 30px 0 0;
     box-sizing: border-box;
@@ -743,11 +745,14 @@ export default {
           display: inline-block;
           width: 1.8rem;
           height: 1.8rem;
+          max-height: 25px;
+          max-width: 25px;
           background-size: 100% 100%;
         }
         p {
           font-size: 10px;
-          line-height:  2.3rem;
+         /* line-height:  2.3rem;*/
+          line-height: 25px;
         }
       }
     }
@@ -801,7 +806,6 @@ export default {
           text-align: center;
           font-size: 10px;
         }
-
       }
     }
 
@@ -820,7 +824,6 @@ export default {
   .imgRotate {
     animation: imgrotate 2s linear infinite;
   }
-
 
 }
 </style>

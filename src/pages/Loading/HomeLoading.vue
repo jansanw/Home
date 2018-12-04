@@ -30,7 +30,7 @@
     mounted() {
       this.$nextTick(()=> {
        let timer1 = setInterval(()=> {
-         if(this.progress>=90) {
+         if(this.progress>=88) {
            this.progress = 100;
            clearInterval(timer1);
            this.$router.push("/home");

@@ -1,12 +1,14 @@
 <template>
       <div class="copyright">
-
+        <img v-lazy="imgUrl" alt="" class="img">
       </div>
 </template>
 <script>
     export default {
         data() {
-            return {}
+            return {
+              imgUrl: "./static/images/More/copyright_02.jpg"
+            }
         },
         methods: {},
         computed: {},
@@ -19,7 +21,9 @@
     width: 100%;
     top: 4rem;
     bottom: 130/30rem;
-    background: url("../../../../static/images/More/copyright_02.jpg") no-repeat;
-    background-size: 100% 100%;
+    overflow: scroll;
+    img {
+      width: 100%;
+    }
   }
 </style>

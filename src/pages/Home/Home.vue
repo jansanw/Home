@@ -1,28 +1,27 @@
 <template>
       <div class="home">
-        <div class="progress" v-if="isShow">
-          <span class="progressSpan">{{progress}}%</span>
-          <div class="progressBox">
-            <mt-progress :value="progress">
-              <!--  <div slot="start">0%</div>
-                <div slot="end">100%</div>-->
-            </mt-progress>
+          <div class="progress" v-if="isShow">
+            <!--v-if="isShow"-->
+            <span class="progressSpan">{{progress}}%</span>
+            <div class="progressBox">
+              <mt-progress :value="progress">
+                <!--  <div slot="start">0%</div>
+                  <div slot="end">100%</div>-->
+              </mt-progress>
+            </div>
+            <span class="progressLoading">加载资源中...</span>
           </div>
-          <span class="progressLoading">加载资源</span>
-        </div>
-        <iframe :src="SpotsUrl"
-                width="100%" height="100%"
-                frameborder="0" scrolling="auto">
-        </iframe>
-
-        <!--全景的切换 白天和夜景-->
-        <div class="homeSpotsToggle">
-          <ul>
-            <li class="spots1" @click="changeSpots(1)"></li>
-            <li class="spots2" @click="changeSpots(2)"></li>
-          </ul>
-        </div>
-
+          <iframe :src="SpotsUrl"
+                  width="100%" height="100%"
+                  frameborder="0" scrolling="auto">
+          </iframe>
+          <!--全景的切换 白天和夜景-->
+         <!-- <div class="homeSpotsToggle">
+            <ul>
+              <li class="spots1" @click="changeSpots(1)"></li>
+              <li class="spots2" @click="changeSpots(2)"></li>
+            </ul>
+          </div>-->
       </div>
 </template>
 <script>
@@ -50,6 +49,11 @@
             that.progress = 100;
             clearInterval(that.timer1);
             that.isShow = false;
+          /*  setTimeout(()=> {
+              that.progress = 100;
+              clearInterval(that.timer1);
+              that.isShow = false;
+            },2000);*/
           };
         });
       },
@@ -79,6 +83,7 @@
 <style lang="less" scoped>
   .home {
     height: 100%;
+    position: relative;
     .homeSpotsToggle {
       position: absolute;
       width: 5rem;
@@ -112,14 +117,21 @@
   .progress {
     text-align: center;
     position: absolute;
-    left: 10%;
-    width: 80%;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
-    margin-top: 23rem;
+    .progressBox {
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      top: 50%;
+    }
     span {
       display: inline-block;
       &.progressSpan {
-        margin-top: .3rem;
+        position: absolute;
+        top: 54%;
+        left: 45%;
         color: #333;
         font-size: 17px;
         font-weight: 400;
@@ -127,7 +139,7 @@
       &.progressLoading {
         position: absolute;
         left: 50%;
-        top: 87%;
+        top: 48%;
         color: #333;
         font-size: 13px;
         transform: translateX(-50%);
